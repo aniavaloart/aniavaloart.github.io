@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="es">
 <head>
+  <meta charset="UTF-8">
   <title>Ania Valo Art</title>
 
   <style>
@@ -53,9 +55,15 @@
       cursor: pointer;
     }
 
-    /* DROPDOWN CLICK */
+    /* DROPDOWN */
     .dropdown {
       position: relative;
+    }
+
+    .dropdown-toggle {
+      margin: 0 15px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
     .dropdown-content {
@@ -75,6 +83,7 @@
       display: block;
       padding: 12px;
       color: black;
+      text-decoration: none;
       font-weight: normal;
     }
 
@@ -82,7 +91,7 @@
       background: #f5f5f5;
     }
 
-    .show {
+    .dropdown.show .dropdown-content {
       display: block;
     }
 
@@ -95,7 +104,6 @@
       flex-direction: column;
       color: white;
       text-align: center;
-
       background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee');
       background-size: cover;
       background-position: center;
@@ -127,44 +135,49 @@
       color: #444;
     }
   </style>
+
 </head>
 
 <body>
 
 <!-- MENÚ -->
-<div class="menu">
 
+<div class="menu">
   <div class="logo">
-    <img src="anialogo.png">
+    <img src="anialogo.png" alt="Logo">
   </div>
 
   <div class="nav">
     <a href="#inicio">Inicio</a>
     <a href="#sobre">Sobre mí</a>
 
-    <!-- COLECCIONES CLICK -->
-    <div class="dropdown">
-      <a onclick="toggleMenu()">Colecciones ▼</a>
-      <div id="dropdownMenu" class="dropdown-content">
-        <a href="#puentes">Puentes Abstractos</a>
-        <a href="#jardines">Jardines</a>
-      </div>
-    </div>
-
-    <a href="#muestras">Muestras</a>
-    <a href="#reflexiones">Reflexiones</a>
-    <a href="#contacto">Contacto</a>
+```
+<!-- COLECCIONES -->
+<div class="dropdown" id="dropdown">
+  <span class="dropdown-toggle" id="dropdownToggle">Colecciones ▼</span>
+  <div class="dropdown-content">
+    <a href="#puentes">Puentes Abstractos</a>
+    <a href="#jardines">Jardines</a>
   </div>
+</div>
 
+<a href="#muestras">Muestras</a>
+<a href="#reflexiones">Reflexiones</a>
+<a href="#contacto">Contacto</a>
+```
+
+  </div>
 </div>
 
 <!-- INICIO -->
+
 <div id="inicio" class="hero">
   <h1>Ania Valo</h1>
   <p>Obras que nacen de la naturaleza y la emoción.</p>
 </div>
 
 <!-- SOBRE -->
+
 <div id="sobre" class="section">
   <h2>Sobre mí</h2>
   <p class="texto">
@@ -173,6 +186,7 @@
 </div>
 
 <!-- PUENTES -->
+
 <div id="puentes" class="section">
   <h2>Puentes Abstractos</h2>
   <p class="texto">
@@ -187,6 +201,7 @@
 </div>
 
 <!-- JARDINES -->
+
 <div id="jardines" class="section">
   <h2>Jardines</h2>
   <p class="texto">
@@ -201,35 +216,37 @@
 </div>
 
 <!-- MUESTRAS -->
+
 <div id="muestras" class="section">
   <h2>Muestras</h2>
 </div>
 
 <!-- REFLEXIONES -->
+
 <div id="reflexiones" class="section">
   <h2>Reflexiones</h2>
 </div>
 
 <!-- CONTACTO -->
+
 <div id="contacto" class="section">
   <h2>Contacto</h2>
 </div>
 
-<!-- SCRIPT (CLAVE) -->
-<script>
-function toggleMenu() {
-  document.getElementById("dropdownMenu").classList.toggle("show");
-}
+<!-- SCRIPT -->
 
-/* Cierra si haces click afuera */
-window.onclick = function(e) {
-  if (!e.target.matches('.dropdown a')) {
-    var menu = document.getElementById("dropdownMenu");
-    if (menu.classList.contains('show')) {
-      menu.classList.remove('show');
-    }
-  }
-}
+<script>
+const dropdown = document.getElementById("dropdown");
+const toggle = document.getElementById("dropdownToggle");
+
+toggle.addEventListener("click", function(e) {
+  e.stopPropagation();
+  dropdown.classList.toggle("show");
+});
+
+document.addEventListener("click", function() {
+  dropdown.classList.remove("show");
+});
 </script>
 
 </body>
