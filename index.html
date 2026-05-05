@@ -4,6 +4,10 @@
   <title>Ania Valo Art</title>
 
   <style>
+    * {
+      box-sizing: border-box; /* 👈 SOLUCIONA EL CORTE */
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -12,9 +16,10 @@
     /* MENÚ */
     .menu {
       position: fixed;
+      top: 0;
       width: 100%;
       background: white;
-      padding: 8px 20px;
+      padding: 10px 30px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -22,22 +27,23 @@
       z-index: 1000;
     }
 
-    /* LOGO MÁS CHICO */
     .logo img {
-      height: 30px;   /* 👈 antes 40px */
+      height: 30px;
     }
 
     .nav {
       display: flex;
       align-items: center;
+      flex-wrap: wrap; /* 👈 evita que se corte */
     }
 
     .nav a {
-      margin: 0 12px;
+      margin: 0 10px;
       text-decoration: none;
       color: black;
       font-weight: bold;
       font-size: 14px;
+      white-space: nowrap; /* 👈 evita que se parta el texto */
     }
 
     /* DROPDOWN */
@@ -122,7 +128,7 @@
     <a href="#sobre">Sobre mí</a>
 
     <div class="dropdown">
-      <a href="#">Obras ▼</a>
+      <a href="#">Colecciones ▼</a>
       <div class="dropdown-content">
         <a href="#jardines">Jardines</a>
         <a href="#luz">Luz</a>
