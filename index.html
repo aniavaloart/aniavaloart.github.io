@@ -1,145 +1,112 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="es">
 <head>
-  <title>Ania Valo Art</title>
+<meta charset="UTF-8">
+<title>Ania Valo Art</title>
 
-  <style>
-    * { box-sizing: border-box; }
+<style>
+* { box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
 
-    /* MENÚ */
-    .menu {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: white;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 1000;
-    }
+/* MENÚ */
+.menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
 
-    .logo img {
-      height: 60px;
-      display: block;
-    }
+.logo img {
+  height: 60px;
+}
 
-    .nav {
-      display: flex;
-      align-items: center;
-      overflow-x: auto;
-      white-space: nowrap;
-      scrollbar-width: none;
-    }
+/* NAV */
+.nav {
+  display: flex;
+  align-items: center;
+  font-size: 0; /* elimina espacios basura */
+}
 
-    .nav::-webkit-scrollbar {
-      display: none;
-    }
+.nav a,
+.dropdown button {
+  font-size: 16px;
+  margin: 0 15px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
 
-    .nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: black;
-      font-weight: bold;
-      font-size: 16px;
-      cursor: pointer;
-    }
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
 
-    /* DROPDOWN */
-    .dropdown {
-      position: relative;
-    }
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: white;
+  min-width: 200px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 999;
+}
 
-    .dropdown-toggle {
-      margin: 0 15px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.dropdown-content a {
+  display: block;
+  padding: 12px;
+  font-weight: normal;
+}
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: white;
-      min-width: 200px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      border-radius: 6px;
-      overflow: hidden;
-      z-index: 999;
-    }
+.dropdown-content a:hover {
+  background: #f5f5f5;
+}
 
-    .dropdown-content a {
-      display: block;
-      padding: 12px;
-      color: black;
-      font-weight: normal;
-    }
+.dropdown.active .dropdown-content {
+  display: block;
+}
 
-    .dropdown-content a:hover {
-      background: #f5f5f5;
-    }
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  text-align: center;
+  background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee');
+  background-size: cover;
+}
 
-    .show {
-      display: block;
-    }
-
-    /* HERO */
-    .hero {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      color: white;
-      text-align: center;
-      background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee');
-      background-size: cover;
-      background-position: center;
-    }
-
-    .section {
-      padding: 100px 20px;
-      text-align: center;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .grid img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-    }
-
-    .texto {
-      max-width: 600px;
-      margin: 30px auto;
-      font-size: 18px;
-      color: #444;
-    }
-  </style>
+/* SECCIONES */
+.section {
+  padding: 100px 20px;
+  text-align: center;
+}
+</style>
 
 </head>
 
 <body>
 
-<!-- MENÚ -->
-
 <div class="menu">
-
   <div class="logo">
     <img src="anialogo.png">
   </div>
@@ -149,10 +116,9 @@
     <a href="#sobre">Sobre mí</a>
 
 ```
-<!-- COLECCIONES -->
-<div class="dropdown">
-  <span class="dropdown-toggle" id="toggleMenu">Colecciones ▼</span>
-  <div id="dropdownMenu" class="dropdown-content">
+<div class="dropdown" id="dropdown">
+  <button id="btnMenu">Colecciones ▼</button>
+  <div class="dropdown-content">
     <a href="#puentes">Puentes Abstractos</a>
     <a href="#jardines">Jardines</a>
   </div>
@@ -164,75 +130,40 @@
 ```
 
   </div>
-
 </div>
-
-<!-- INICIO -->
 
 <div id="inicio" class="hero">
   <h1>Ania Valo</h1>
   <p>Obras que nacen de la naturaleza y la emoción.</p>
 </div>
 
-<!-- SOBRE -->
-
 <div id="sobre" class="section">
   <h2>Sobre mí</h2>
-  <p class="texto">
-    Mi trabajo nace de una búsqueda interna, una conexión con la naturaleza y las emociones.
-  </p>
 </div>
-
-<!-- PUENTES -->
 
 <div id="puentes" class="section">
   <h2>Puentes Abstractos</h2>
-  <p class="texto">
-    Obras que conectan espacios internos, emociones y estados en transformación.
-  </p>
-
-  <div class="grid">
-    <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429">
-    <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
-    <img src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92">
-  </div>
 </div>
-
-<!-- JARDINES -->
 
 <div id="jardines" class="section">
   <h2>Jardines</h2>
-  <p class="texto">
-    Jardines nace del deseo de expresar lo que la naturaleza deja resonando en el interior.
-  </p>
-
-  <div class="grid">
-    <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7">
-    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
-    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
-  </div>
 </div>
 
-<!-- SCRIPT CORREGIDO -->
-
 <script>
-const toggle = document.getElementById("toggleMenu");
-const menu = document.getElementById("dropdownMenu");
+document.addEventListener("DOMContentLoaded", function() {
 
-/* ABRIR / CERRAR */
-toggle.addEventListener("click", function(e) {
-  e.stopPropagation();
-  menu.classList.toggle("show");
-});
+  const dropdown = document.getElementById("dropdown");
+  const btn = document.getElementById("btnMenu");
 
-/* NO cerrar si hago click dentro */
-menu.addEventListener("click", function(e) {
-  e.stopPropagation();
-});
+  btn.addEventListener("click", function(e) {
+    e.stopPropagation();
+    dropdown.classList.toggle("active");
+  });
 
-/* CERRAR correctamente */
-document.addEventListener("click", function() {
-  menu.classList.remove("show");
+  document.addEventListener("click", function() {
+    dropdown.classList.remove("active");
+  });
+
 });
 </script>
 
