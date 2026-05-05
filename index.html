@@ -2,139 +2,132 @@
 
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Ania Valo Art</title>
+<meta charset="UTF-8">
+<title>Ania Valo Art</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
 
-    /* MENÚ */
-    .menu {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: white;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      z-index: 1000;
-    }
+/* MENÚ */
+.menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
 
-    .logo img {
-      height: 60px;
-      display: block;
-    }
+.logo img {
+  height: 60px;
+}
 
-    .nav {
-      display: flex;
-      align-items: center;
-      overflow-x: auto;
-      white-space: nowrap;
-      scrollbar-width: none;
-    }
+.nav {
+  display: flex;
+  align-items: center;
+}
 
-    .nav::-webkit-scrollbar {
-      display: none;
-    }
+.nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-    .nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: black;
-      font-weight: bold;
-      font-size: 16px;
-      cursor: pointer;
-    }
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
 
-    /* DROPDOWN */
-    .dropdown {
-      position: relative;
-    }
+.dropdown button {
+  background: none;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0 15px;
+  font-size: 16px;
+}
 
-    .dropdown-toggle {
-      margin: 0 15px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: white;
+  min-width: 200px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  border-radius: 6px;
+  overflow: hidden;
+}
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: white;
-      min-width: 200px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      border-radius: 6px;
-      overflow: hidden;
-      z-index: 999;
-    }
+.dropdown-content a {
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+  color: black;
+}
 
-    .dropdown-content a {
-      display: block;
-      padding: 12px;
-      color: black;
-      text-decoration: none;
-      font-weight: normal;
-    }
+.dropdown-content a:hover {
+  background: #f5f5f5;
+}
 
-    .dropdown-content a:hover {
-      background: #f5f5f5;
-    }
+.dropdown.active .dropdown-content {
+  display: block;
+}
 
-    .dropdown.show .dropdown-content {
-      display: block;
-    }
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  text-align: center;
+  background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee');
+  background-size: cover;
+  background-position: center;
+}
 
-    /* HERO */
-    .hero {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      color: white;
-      text-align: center;
-      background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee');
-      background-size: cover;
-      background-position: center;
-    }
+/* SECCIONES */
+.section {
+  padding: 100px 20px;
+  text-align: center;
+}
 
-    .section {
-      padding: 100px 20px;
-      text-align: center;
-    }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
+.grid img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
 
-    .grid img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-    }
-
-    .texto {
-      max-width: 600px;
-      margin: 30px auto;
-      font-size: 18px;
-      color: #444;
-    }
-  </style>
+.texto {
+  max-width: 600px;
+  margin: 30px auto;
+  font-size: 18px;
+  color: #444;
+}
+</style>
 
 </head>
 
@@ -154,7 +147,7 @@
 ```
 <!-- COLECCIONES -->
 <div class="dropdown" id="dropdown">
-  <span class="dropdown-toggle" id="dropdownToggle">Colecciones ▼</span>
+  <button id="btnMenu">Colecciones ▼</button>
   <div class="dropdown-content">
     <a href="#puentes">Puentes Abstractos</a>
     <a href="#jardines">Jardines</a>
@@ -237,15 +230,15 @@
 
 <script>
 const dropdown = document.getElementById("dropdown");
-const toggle = document.getElementById("dropdownToggle");
+const btn = document.getElementById("btnMenu");
 
-toggle.addEventListener("click", function(e) {
+btn.addEventListener("click", function(e) {
   e.stopPropagation();
-  dropdown.classList.toggle("show");
+  dropdown.classList.toggle("active");
 });
 
 document.addEventListener("click", function() {
-  dropdown.classList.remove("show");
+  dropdown.classList.remove("active");
 });
 </script>
 
