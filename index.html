@@ -27,15 +27,16 @@
       z-index: 1000;
     }
 
+    /* LOGO SIN ESPACIO ABAJO */
     .logo img {
       height: 30px;
-      flex-shrink: 0;
+      display: block; /* 👈 CLAVE: elimina espacio inferior */
     }
 
     .nav {
       display: flex;
       align-items: center;
-      overflow-x: auto; /* 👈 CLAVE: evita corte */
+      overflow-x: auto;
       white-space: nowrap;
       scrollbar-width: none;
     }
@@ -49,7 +50,7 @@
       text-decoration: none;
       color: black;
       font-weight: bold;
-      font-size: 16px; /* 👈 volvimos al tamaño original */
+      font-size: 16px;
       flex-shrink: 0;
     }
 
