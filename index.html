@@ -5,7 +5,7 @@
 
   <style>
     * {
-      box-sizing: border-box; /* 👈 SOLUCIONA EL CORTE */
+      box-sizing: border-box;
     }
 
     body {
@@ -19,36 +19,44 @@
       top: 0;
       width: 100%;
       background: white;
-      padding: 10px 30px;
+      padding: 10px 20px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 20px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       z-index: 1000;
     }
 
     .logo img {
       height: 30px;
+      flex-shrink: 0;
     }
 
     .nav {
       display: flex;
       align-items: center;
-      flex-wrap: wrap; /* 👈 evita que se corte */
+      overflow-x: auto; /* 👈 CLAVE: evita corte */
+      white-space: nowrap;
+      scrollbar-width: none;
+    }
+
+    .nav::-webkit-scrollbar {
+      display: none;
     }
 
     .nav a {
-      margin: 0 10px;
+      margin: 0 15px;
       text-decoration: none;
       color: black;
       font-weight: bold;
-      font-size: 14px;
-      white-space: nowrap; /* 👈 evita que se parta el texto */
+      font-size: 16px; /* 👈 volvimos al tamaño original */
+      flex-shrink: 0;
     }
 
     /* DROPDOWN */
     .dropdown {
       position: relative;
+      flex-shrink: 0;
     }
 
     .dropdown-content {
