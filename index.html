@@ -14,13 +14,24 @@
       position: fixed;
       width: 100%;
       background: white;
-      padding: 15px;
-      text-align: center;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       z-index: 1000;
     }
 
-    .menu a {
+    .logo img {
+      height: 40px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav a {
       margin: 0 15px;
       text-decoration: none;
       color: black;
@@ -29,7 +40,6 @@
 
     /* DROPDOWN */
     .dropdown {
-      display: inline-block;
       position: relative;
     }
 
@@ -44,7 +54,6 @@
     .dropdown-content a {
       display: block;
       padding: 10px;
-      text-align: left;
     }
 
     .dropdown:hover .dropdown-content {
@@ -87,14 +96,13 @@
       object-fit: cover;
     }
 
-    /* REFLEXIÓN */
+    /* TEXTOS */
     .texto {
       max-width: 600px;
       margin: 30px auto;
       font-size: 18px;
       color: #444;
     }
-
   </style>
 </head>
 
@@ -103,7 +111,7 @@
 <!-- MENÚ -->
 <div class="menu">
 
-  <div class="anialogo">
+  <div class="logo">
     <img src="anialogo.png">
   </div>
 
@@ -125,21 +133,6 @@
   </div>
 
 </div>
-  <a href="#inicio">Inicio</a>
-  <a href="#sobre">Sobre mí</a>
-
-  <div class="dropdown">
-    <a href="#">Obras ▼</a>
-    <div class="dropdown-content">
-      <a href="#jardines">Jardines</a>
-      <a href="#luz">Luz</a>
-    </div>
-  </div>
-
-  <a href="#muestras">Muestras</a>
-  <a href="#reflexiones">Reflexiones</a>
-  <a href="#contacto">Contacto</a>
-</div>
 
 <!-- INICIO -->
 <div id="inicio" class="hero">
@@ -155,16 +148,13 @@
   </p>
 </div>
 
-<!-- COLECCIÓN JARDINES -->
+<!-- JARDINES -->
 <div id="jardines" class="section">
   <h2>Jardines</h2>
-
-  <!-- REFLEXIÓN DE LA COLECCIÓN -->
   <p class="texto">
     Jardines nace del deseo de expresar lo que la naturaleza deja resonando en el interior.
   </p>
 
-  <!-- OBRAS -->
   <div class="grid">
     <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429">
     <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
@@ -172,10 +162,9 @@
   </div>
 </div>
 
-<!-- COLECCIÓN LUZ -->
+<!-- LUZ -->
 <div id="luz" class="section">
   <h2>Luz</h2>
-
   <p class="texto">
     La luz como lenguaje, como emoción, como presencia que transforma.
   </p>
@@ -190,7 +179,9 @@
 <!-- MUESTRAS -->
 <div id="muestras" class="section">
   <h2>Muestras</h2>
-  <p class="texto">Próximamente exposiciones y espacios donde se presentan las obras.</p>
+  <p class="texto">
+    Próximamente exposiciones y espacios donde se presentan las obras.
+  </p>
 </div>
 
 <!-- REFLEXIONES -->
@@ -204,7 +195,9 @@
 <!-- CONTACTO -->
 <div id="contacto" class="section">
   <h2>Contacto</h2>
-  <p class="texto">Escribime para adquirir una obra o conocer más.</p>
+  <p class="texto">
+    Escribime para adquirir una obra o conocer más.
+  </p>
 </div>
 
 </body>
