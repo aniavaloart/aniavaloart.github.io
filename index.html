@@ -53,6 +53,32 @@
       flex-shrink: 0;
     }
 
+    /* DROPDOWN */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      min-width: 180px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      z-index: 999;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      color: black;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
     /* HERO */
     .hero {
       height: 100vh;
@@ -72,32 +98,6 @@
     .section {
       padding: 100px 20px;
       text-align: center;
-    }
-
-    /* COLECCIONES */
-    .colecciones-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 40px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .coleccion {
-      cursor: pointer;
-      text-decoration: none;
-      color: black;
-    }
-
-    .coleccion img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-    }
-
-    .coleccion p {
-      margin-top: 10px;
-      font-size: 18px;
     }
 
     /* GALERÍA */
@@ -136,7 +136,15 @@
   <div class="nav">
     <a href="#inicio">Inicio</a>
     <a href="#sobre">Sobre mí</a>
-    <a href="#colecciones">Colecciones</a>
+
+    <div class="dropdown">
+      <a href="#">Colecciones ▼</a>
+      <div class="dropdown-content">
+        <a href="#puentes">Puentes Abstractos</a>
+        <a href="#jardines">Jardines</a>
+      </div>
+    </div>
+
     <a href="#muestras">Muestras</a>
     <a href="#reflexiones">Reflexiones</a>
     <a href="#contacto">Contacto</a>
@@ -158,25 +166,6 @@
   </p>
 </div>
 
-<!-- COLECCIONES -->
-<div id="colecciones" class="section">
-  <h2>Colecciones</h2>
-
-  <div class="colecciones-grid">
-
-    <a href="#puentes" class="coleccion">
-      <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429">
-      <p>Puentes Abstractos</p>
-    </a>
-
-    <a href="#jardines" class="coleccion">
-      <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7">
-      <p>Jardines</p>
-    </a>
-
-  </div>
-</div>
-
 <!-- PUENTES -->
 <div id="puentes" class="section">
   <h2>Puentes Abstractos</h2>
@@ -185,9 +174,9 @@
   </p>
 
   <div class="grid">
+    <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429">
     <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
     <img src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92">
-    <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429">
   </div>
 </div>
 
@@ -199,9 +188,9 @@
   </p>
 
   <div class="grid">
-    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
-    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
     <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7">
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
   </div>
 </div>
 
