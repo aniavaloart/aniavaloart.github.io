@@ -50,18 +50,12 @@
       color: black;
       font-weight: bold;
       font-size: 16px;
-      flex-shrink: 0;
+      cursor: pointer;
     }
 
-    /* DROPDOWN CORREGIDO */
+    /* DROPDOWN CLICK */
     .dropdown {
       position: relative;
-    }
-
-    .dropdown > a {
-      cursor: pointer;
-      display: inline-block;
-      padding: 10px 5px;
     }
 
     .dropdown-content {
@@ -88,8 +82,7 @@
       background: #f5f5f5;
     }
 
-    .dropdown:hover .dropdown-content,
-    .dropdown:focus-within .dropdown-content {
+    .show {
       display: block;
     }
 
@@ -108,13 +101,11 @@
       background-position: center;
     }
 
-    /* SECCIONES */
     .section {
       padding: 100px 20px;
       text-align: center;
     }
 
-    /* GALERÍA */
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -151,10 +142,10 @@
     <a href="#inicio">Inicio</a>
     <a href="#sobre">Sobre mí</a>
 
-    <!-- COLECCIONES -->
+    <!-- COLECCIONES CLICK -->
     <div class="dropdown">
-      <a>Colecciones ▼</a>
-      <div class="dropdown-content">
+      <a onclick="toggleMenu()">Colecciones ▼</a>
+      <div id="dropdownMenu" class="dropdown-content">
         <a href="#puentes">Puentes Abstractos</a>
         <a href="#jardines">Jardines</a>
       </div>
@@ -212,26 +203,34 @@
 <!-- MUESTRAS -->
 <div id="muestras" class="section">
   <h2>Muestras</h2>
-  <p class="texto">
-    Próximamente exposiciones y espacios donde se presentan las obras.
-  </p>
 </div>
 
 <!-- REFLEXIONES -->
 <div id="reflexiones" class="section">
   <h2>Reflexiones</h2>
-  <p class="texto">
-    A veces lo importante no es lo que se ve, sino lo que queda vibrando después.
-  </p>
 </div>
 
 <!-- CONTACTO -->
 <div id="contacto" class="section">
   <h2>Contacto</h2>
-  <p class="texto">
-    Escribime para adquirir una obra o conocer más.
-  </p>
 </div>
+
+<!-- SCRIPT (CLAVE) -->
+<script>
+function toggleMenu() {
+  document.getElementById("dropdownMenu").classList.toggle("show");
+}
+
+/* Cierra si haces click afuera */
+window.onclick = function(e) {
+  if (!e.target.matches('.dropdown a')) {
+    var menu = document.getElementById("dropdownMenu");
+    if (menu.classList.contains('show')) {
+      menu.classList.remove('show');
+    }
+  }
+}
+</script>
 
 </body>
 </html>
