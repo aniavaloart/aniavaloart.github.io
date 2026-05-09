@@ -1,171 +1,415 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Ania Valo Art</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Ania Való</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-* { box-sizing: border-box; }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-/* MENÚ */
-.menu {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: white;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  z-index: 1000;
+body{
+    background:#f7f5f2;
+    color:#111;
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
 }
 
-.logo img {
-  height: 60px;
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+img{
+    width:100%;
+    display:block;
+}
+
+.container{
+    width:90%;
+    max-width:1400px;
+    margin:auto;
 }
 
 /* NAV */
-.nav {
-  display: flex;
-  align-items: center;
-  font-size: 0; /* elimina espacios basura */
+
+nav{
+    width:100%;
+    padding:35px 0;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:100;
+    background:rgba(247,245,242,0.92);
+    backdrop-filter:blur(10px);
 }
 
-.nav a,
-.dropdown button {
-  font-size: 16px;
-  margin: 0 15px;
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
-  cursor: pointer;
-  background: none;
-  border: none;
+.nav-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-/* DROPDOWN */
-.dropdown {
-  position: relative;
+.logo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:42px;
+    letter-spacing:2px;
+    font-weight:500;
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 40px;
-  left: 0;
-  background: white;
-  min-width: 200px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  border-radius: 6px;
-  overflow: hidden;
-  z-index: 999;
+.menu{
+    display:flex;
+    gap:40px;
 }
 
-.dropdown-content a {
-  display: block;
-  padding: 12px;
-  font-weight: normal;
+.menu a{
+    font-size:14px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    transition:.3s;
 }
 
-.dropdown-content a:hover {
-  background: #f5f5f5;
-}
-
-.dropdown.active .dropdown-content {
-  display: block;
+.menu a:hover{
+    opacity:.5;
 }
 
 /* HERO */
-.hero {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: white;
-  text-align: center;
-  background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee');
-  background-size: cover;
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding-top:120px;
 }
 
-/* SECCIONES */
-.section {
-  padding: 100px 20px;
-  text-align: center;
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:70px;
+    align-items:center;
 }
+
+.hero-text h1{
+    font-family:'Cormorant Garamond',serif;
+    font-size:96px;
+    line-height:0.95;
+    font-weight:400;
+    margin-bottom:30px;
+}
+
+.hero-text p{
+    font-size:18px;
+    line-height:1.8;
+    max-width:500px;
+    color:#444;
+}
+
+.hero-image{
+    overflow:hidden;
+}
+
+.hero-image img{
+    height:80vh;
+    object-fit:cover;
+}
+
+/* SECTION */
+
+.section{
+    padding:140px 0;
+}
+
+.section-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:64px;
+    margin-bottom:70px;
+    font-weight:400;
+}
+
+/* GALLERY */
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+}
+
+.art-card{
+    transition:.4s;
+}
+
+.art-card:hover{
+    transform:translateY(-8px);
+}
+
+.art-card img{
+    height:500px;
+    object-fit:cover;
+}
+
+.art-info{
+    padding-top:18px;
+}
+
+.art-info h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:34px;
+    font-weight:400;
+    margin-bottom:8px;
+}
+
+.art-info p{
+    color:#666;
+    font-size:14px;
+}
+
+/* FEATURE */
+
+.feature{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.feature-text h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:70px;
+    line-height:1;
+    font-weight:400;
+    margin-bottom:30px;
+}
+
+.feature-text p{
+    font-size:17px;
+    line-height:1.9;
+    color:#444;
+}
+
+.feature img{
+    height:700px;
+    object-fit:cover;
+}
+
+/* FOOTER */
+
+footer{
+    padding:80px 0;
+    border-top:1px solid rgba(0,0,0,0.08);
+}
+
+.footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.footer-logo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:36px;
+}
+
+.footer-links{
+    display:flex;
+    gap:30px;
+}
+
+.footer-links a{
+    font-size:14px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+.hero-grid,
+.feature{
+    grid-template-columns:1fr;
+}
+
+.hero-text h1{
+    font-size:72px;
+}
+
+.gallery{
+    grid-template-columns:1fr 1fr;
+}
+
+.feature img{
+    height:500px;
+}
+
+}
+
+@media(max-width:700px){
+
+.menu{
+    gap:18px;
+}
+
+.menu a{
+    font-size:11px;
+}
+
+.hero-text h1{
+    font-size:52px;
+}
+
+.section-title{
+    font-size:44px;
+}
+
+.gallery{
+    grid-template-columns:1fr;
+}
+
+.feature-text h2{
+    font-size:48px;
+}
+
+.hero-image img{
+    height:60vh;
+}
+
+}
+
 </style>
-
 </head>
 
 <body>
 
-<div class="menu">
-  <div class="logo">
-    <img src="anialogo.png">
-  </div>
+<nav>
+    <div class="container nav-inner">
 
-  <div class="nav">
-    <a href="#inicio">Inicio</a>
-    <a href="#sobre">Sobre mí</a>
+        <div class="logo">ANIA VALÓ</div>
 
+        <div class="menu">
+            <a href="#">Inicio</a>
+            <a href="#">Colección</a>
+            <a href="#">Exhibiciones</a>
+            <a href="#">Contacto</a>
+        </div>
 
-<div class="dropdown" id="dropdown">
-  <button id="btnMenu">Colecciones ▼</button>
-  <div class="dropdown-content">
-    <a href="#puentes">Puentes Abstractos</a>
-    <a href="#jardines">Jardines</a>
-  </div>
-</div>
+    </div>
+</nav>
 
-<a href="#muestras">Muestras</a>
-<a href="#reflexiones">Reflexiones</a>
-<a href="#contacto">Contacto</a>
-```
+<section class="hero">
+    <div class="container hero-grid">
 
-  </div>
-</div>
+        <div class="hero-text">
+            <h1>
+                El arte como
+                experiencia
+            </h1>
 
-<div id="inicio" class="hero">
-  <h1>Ania Valo</h1>
-  <p>Obras que nacen de la naturaleza y la emoción.</p>
-</div>
+            <p>
+                Obras inspiradas en naturaleza, simbolismo y emociones contemporáneas.
+                Una exploración visual entre lo humano y lo salvaje.
+            </p>
+        </div>
 
-<div id="sobre" class="section">
-  <h2>Sobre mí</h2>
-</div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=1600&auto=format&fit=crop" alt="">
+        </div>
 
-<div id="puentes" class="section">
-  <h2>Puentes Abstractos</h2>
-</div>
+    </div>
+</section>
 
-<div id="jardines" class="section">
-  <h2>Jardines</h2>
-</div>
+<section class="section">
+    <div class="container">
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
+        <h2 class="section-title">Colección</h2>
 
-  const dropdown = document.getElementById("dropdown");
-  const btn = document.getElementById("btnMenu");
+        <div class="gallery">
 
-  btn.addEventListener("click", function(e) {
-    e.stopPropagation();
-    dropdown.classList.toggle("active");
-  });
+            <div class="art-card">
+                <img src="https://images.unsplash.com/photo-1578301979108-0d9fdf9b8f11?q=80&w=1200&auto=format&fit=crop">
 
-  document.addEventListener("click", function() {
-    dropdown.classList.remove("active");
-  });
+                <div class="art-info">
+                    <h3>Fragmentos</h3>
+                    <p>2026 · Acrílico sobre tela</p>
+                </div>
+            </div>
 
-});
-</script>
+            <div class="art-card">
+                <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="art-info">
+                    <h3>Silencio</h3>
+                    <p>2026 · Técnica mixta</p>
+                </div>
+            </div>
+
+            <div class="art-card">
+                <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="art-info">
+                    <h3>Memoria</h3>
+                    <p>2026 · Óleo sobre lienzo</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="section">
+
+    <div class="container feature">
+
+        <img src="https://images.unsplash.com/photo-1578926288207-a90a5366759d?q=80&w=1600&auto=format&fit=crop">
+
+        <div class="feature-text">
+
+            <h2>
+                Naturaleza,
+                símbolos y
+                misterio
+            </h2>
+
+            <p>
+                La obra explora escenarios donde conviven lo ancestral,
+                lo humano y lo imaginario. Cada composición funciona como
+                un espacio narrativo abierto, lleno de tensión visual y contemplación.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <div class="container footer-inner">
+
+        <div class="footer-logo">
+            ANIA VALÓ
+        </div>
+
+        <div class="footer-links">
+            <a href="#">Instagram</a>
+            <a href="#">Mail</a>
+            <a href="#">Contacto</a>
+        </div>
+
+    </div>
+
+</footer>
 
 </body>
 </html>
