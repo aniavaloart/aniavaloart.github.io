@@ -113,6 +113,7 @@
     const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1YP4lU1pTAVV_N9W0eNmATQfoaSqultXDHSJrlf5oEutLrpB8vaqsEuZjICM-d5c0ZypV3Htt4MtM/pub?output=csv";
 
     function cargar() {
+        // Usamos fetch para forzar la carga limpia
         fetch(CSV_URL)
             .then(response => response.text())
             .then(csvText => {
@@ -144,16 +145,13 @@
             let cardsHTML = '';
 
             obras.forEach(o => {
-                // Limpiamos el valor de disponible para comparar bien
-                const dispVal = (o.Disponible || "").trim().toUpperCase();
-                const disp = dispVal === "SI" || dispVal === "SÍ";
-                
+                const disp = (o.Disponible || "").trim().toUpperCase() === "SI";
                 cardsHTML += `
                     <div class="art-card">
                         <img src="${o.Imagen}" onerror="this.src='https://via.placeholder.com/500x700?text=Cargando...'">
                         <div class="art-info">
-                            <h3>${o.Titulo || o.Título || 'Sin título'}</h3>
-                            <div class="art-meta">${o.Año || ''} · \${o.Tamaño || o.Tamano || ''}</div>
+                            <h3>${o.Titulo || o.Título}</h3>
+                            <div class="art-meta">${o.Año || ''} · \${o.Tamaño || ''}</div>
                             <p class="art-description">${o.Descripcion || o.Descripción || ''}</p>
                             <div class="art-status-row">
                                 <span class="status-tag \${disp ? 'disponible' : 'vendida'}">${disp ? 'Disponible' : 'Vendida'}</span>
@@ -165,4 +163,15 @@
 
             container.innerHTML += `
                 <section class="section" id="${id}">
-                    <div class="contai
+                    <div class="container">
+                        <h2 class="section-title">${col}</h2>
+                        <div class="gallery">${cardsHTML}</div>
+                    </div>
+                </section>`;
+        });
+    }
+
+    window.onload = cargar;
+</script>
+</body>
+</html>
