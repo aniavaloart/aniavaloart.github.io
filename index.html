@@ -3,62 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ania Való | Arte</title>
+    <title>Ania Való | Arte y Pensamiento</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
+        /* BASE */
         * { margin:0; padding:0; box-sizing:border-box; }
         html { scroll-behavior: smooth; }
-        body { background:#f6f3ef; font-family:'Inter', sans-serif; color:#111; }
+        body { background:#f6f3ef; font-family:'Inter', sans-serif; color:#111; line-height: 1.6; }
 
         /* NAVEGACIÓN */
-        nav { position: fixed; top:0; width:100%; background:rgba(246,243,239,0.98); backdrop-filter:blur(10px); z-index:1000; padding: 20px 0; border-bottom: 1px solid #ddd; }
-        .nav-inner { width:90%; max-width:1400px; margin:auto; display:flex; justify-content:space-between; align-items:center; }
-        .logo { font-family:'Cormorant Garamond', serif; font-size:28px; letter-spacing:2px; }
+        nav { position: fixed; top:0; width:100%; background:#f6f3ef; z-index:1000; padding: 25px 0; border-bottom: 1px solid #e2e0dd; }
+        .nav-inner { width:90%; max-width:1200px; margin:auto; display:flex; justify-content:space-between; align-items:center; }
+        .logo { font-family:'Cormorant Garamond', serif; font-size:28px; letter-spacing:3px; text-decoration: none; color: #111; }
         
-        .menu { display:flex; gap:25px; list-style:none; align-items: center; }
-        .menu a { text-decoration:none; color:#111; font-size:11px; text-transform:uppercase; letter-spacing:1px; cursor:pointer; }
+        .menu { display:flex; gap:30px; list-style:none; }
+        .menu a { text-decoration:none; color:#111; font-size:11px; text-transform:uppercase; letter-spacing:1px; font-weight: 500; }
 
-        /* DROPDOWN MEJORADO */
-        .dropdown { position: relative; }
-        .dropdown-btn { cursor: pointer; padding-bottom: 5px; }
+        /* DROPDOWN (PROBADO Y FUNCIONAL) */
+        .dropdown { position: relative; display: inline-block; }
+        .dropbtn { cursor: pointer; padding-bottom: 5px; }
         .dropdown-content { 
-            display: none; position: absolute; top: 100%; left: 0; 
-            background: #f6f3ef; min-width: 220px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-            padding: 10px 0; border: 1px solid #ddd; margin-top: 5px;
+            display: none; 
+            position: absolute; 
+            background-color: #f6f3ef; 
+            min-width: 200px; 
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1); 
+            z-index: 1; 
+            top: 20px;
+            border: 1px solid #ddd;
         }
-        /* Se muestra al pasar el mouse o al tener la clase active */
-        .dropdown:hover .dropdown-content, .dropdown.active .dropdown-content { display: block; }
-        .dropdown-content a { display: block; padding: 12px 20px; border-bottom: 1px solid rgba(0,0,0,0.03); font-size: 10px; }
-        .dropdown-content a:hover { background: #fff; }
+        .dropdown-content a { 
+            color: black; padding: 12px 16px; text-decoration: none; display: block; border-bottom: 1px solid #eee;
+        }
+        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content a:hover { background-color: #fff; }
 
-        /* HERO */
-        .hero { min-height:100vh; display:flex; align-items:center; padding-top:100px; }
-        .hero-grid { display:grid; grid-template-columns: 1fr 1fr; gap:50px; width:90%; max-width:1400px; margin:auto; align-items:center; }
-        .hero-text h1 { font-family:'Cormorant Garamond', serif; font-size:clamp(40px, 5vw, 75px); line-height:1.1; font-weight: 400; }
-        .hero-image img { width:100%; height:75vh; object-fit:cover; }
+        /* HERO (PORTADA) */
+        .hero { min-height:100vh; display:flex; align-items:center; padding-top:80px; }
+        .hero-grid { display:grid; grid-template-columns: 1fr 1fr; gap:60px; width:90%; max-width:1200px; margin:auto; align-items:center; }
+        .hero-text h1 { font-family:'Cormorant Garamond', serif; font-size:clamp(45px, 6vw, 80px); line-height:1.1; margin-bottom:20px; font-weight: 400; }
+        .hero-image img { width:100%; height:80vh; object-fit:cover; }
 
-        /* SECCIONES */
-        .section { padding:100px 0; width:90%; max-width:1400px; margin:auto; }
-        .section-title { font-family:'Cormorant Garamond', serif; font-size:42px; margin-bottom:40px; border-bottom:1px solid #111; padding-bottom:10px; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; }
-        
-        /* GALERÍA */
+        /* SECCIONES GENERALES */
+        .section { padding:100px 0; width:90%; max-width:1200px; margin:auto; }
+        .section-title { font-family:'Cormorant Garamond', serif; font-size:40px; margin-bottom:50px; border-bottom:1px solid #111; padding-bottom:15px; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; }
+        .content-text { max-width:850px; font-size:18px; color:#333; margin-bottom: 40px; }
+
+        /* GALERÍA (4 COLUMNAS PC / 2 MOVIL) */
         .galeria-grid { display:grid; grid-template-columns: repeat(4, 1fr); gap:30px; }
-        @media (max-width: 1000px) { .galeria-grid { grid-template-columns: repeat(2, 1fr); gap:20px; } }
+        @media (max-width: 1024px) { .galeria-grid { grid-template-columns: repeat(2, 1fr); gap:20px; } }
 
-        .card { background:white; padding:15px; transition:0.3s ease; cursor: pointer; }
-        .card img { width:100%; aspect-ratio:4/5; object-fit:cover; margin-bottom:15px; }
-        .card h3 { font-family:'Cormorant Garamond', serif; font-size:22px; margin-bottom:5px; }
-        .card p { font-size:12px; color:#666; line-height:1.4; }
+        .card { background:white; padding:15px; transition: 0.3s; cursor: zoom-in; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .card img { width:100%; aspect-ratio: 4/5; object-fit:cover; margin-bottom:15px; }
+        .card h3 { font-family:'Cormorant Garamond', serif; font-size:22px; margin-bottom:8px; }
+        .card p { font-size:12px; color:#666; line-height:1.5; }
         
-        .tag { display:inline-block; padding:3px 8px; font-size:9px; text-transform:uppercase; margin-top:10px; font-weight:bold; }
+        .tag { display:inline-block; padding:4px 10px; font-size:9px; text-transform:uppercase; margin-top:12px; font-weight:bold; letter-spacing:1px; }
         .disponible { background:#e8f5e9; color:#2e7d32; }
         .vendido { background:#f5f5f5; color:#999; }
-        .precio { font-weight:bold; margin-top:5px; font-size:15px; }
+        .precio { font-weight:600; margin-top:10px; font-size:16px; display: block; }
 
         /* ZOOM */
         .overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(246,243,239,0.98); z-index:2000; justify-content:center; align-items:center; }
         .overlay.active { display:flex; }
-        .overlay img { max-height:90vh; max-width:90vw; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .overlay img { max-height:90vh; max-width:90vw; }
     </style>
 </head>
 <body>
@@ -69,14 +78,17 @@
 
 <nav>
     <div class="nav-inner">
-        <div class="logo">ANIA VALÓ</div>
+        <a href="#home" class="logo">ANIA VALÓ</a>
         <ul class="menu">
             <li><a href="#home">Home</a></li>
             <li><a href="#biografia">Biografía</a></li>
-            <li class="dropdown" id="drop-parent">
-                <a class="dropdown-btn">Colecciones ▼</a>
-                <div class="dropdown-content" id="menu-items">
-                    <!-- Las colecciones aparecerán aquí -->
+            <li class="dropdown">
+                <a class="dropbtn">Colecciones ▼</a>
+                <div class="dropdown-content">
+                    <a href="#puentes-abstractos">Puentes Abstractos</a>
+                    <a href="#jardines">Jardines</a>
+                    <a href="#interiores">Interiores</a>
+                    <a href="#abstracciones">Abstracciones</a>
                 </div>
             </li>
             <li><a href="#vision">Visión</a></li>
@@ -89,55 +101,91 @@
     <div class="hero-grid">
         <div class="hero-text">
             <h1>Arte, pensamiento y sensibilidad humana.</h1>
-            <p>"La pintura representa la parte más visual y estética de mi universo creativo..."</p>
+            <p style="font-size: 18px; color: #555;">"La pintura representa la parte más visual y estética de mi universo creativo."</p>
         </div>
         <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1200" alt="Ania Való">
+            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1200" alt="Obra Principal">
         </div>
     </div>
 </section>
 
 <section class="section" id="biografia">
     <h2 class="section-title">Biografía</h2>
-    <p style="max-width:800px; font-size:18px; color:#444;">Ania Való es una artista multidisciplinaria uruguaya...</p>
+    <div class="content-text">
+        <p>Ania Való es una artista multidisciplinaria uruguaya. Su obra nace del cruce entre el arte, el pensamiento y la sensibilidad humana, explorando la relación entre el espacio y la materia.</p>
+    </div>
 </section>
 
-<!-- CONTENEDOR DE GALERÍAS -->
+<!-- CONTENEDOR DINÁMICO -->
 <div id="galerias-container"></div>
 
 <section class="section" id="vision">
     <h2 class="section-title">Visión</h2>
-    <p style="max-width:800px; font-size:18px; color:#444;">Mi visión artística busca conectar con lo intangible...</p>
+    <div class="content-text">
+        <p>Mi visión busca conectar con lo intangible, creando puentes visuales que inviten a la reflexión y al silencio en un mundo de ruido constante.</p>
+    </div>
 </section>
 
+<footer class="section" id="contacto" style="text-align: center; padding-top: 0;">
+    <p style="font-size: 12px; letter-spacing: 2px; opacity: 0.6;">© 2026 ANIA VALÓ · MONTEVIDEO</p>
+</footer>
+
 <script>
-    const menuItems = document.getElementById('menu-items');
+    // DATOS INTEGRADOS: Aquí puedes añadir o quitar obras fácilmente.
+    const obras = [
+        { "titulo": "Umbral I", "coleccion": "Puentes Abstractos", "imagen": "https://picsum.photos/500/650?random=1", "tecnica": "Óleo sobre lino", "año": "2026", "dimensiones": "120x100cm", "estado": "Disponible", "precio": "$1.200" },
+        { "titulo": "Umbral II", "coleccion": "Puentes Abstractos", "imagen": "https://picsum.photos/500/650?random=2", "tecnica": "Técnica mixta", "año": "2026", "dimensiones": "100x100cm", "estado": "Vendido", "precio": "—" },
+        { "titulo": "Brotar", "coleccion": "Jardines", "imagen": "https://picsum.photos/500/650?random=3", "tecnica": "Acrílico", "año": "2025", "dimensiones": "80x80cm", "estado": "Disponible", "precio": "$850" },
+        { "titulo": "Raíces", "coleccion": "Jardines", "imagen": "https://picsum.photos/500/650?random=4", "tecnica": "Óleo", "año": "2025", "dimensiones": "90x90cm", "estado": "Disponible", "precio": "$900" },
+        { "titulo": "Refugio", "coleccion": "Interiores", "imagen": "https://picsum.photos/500/650?random=5", "tecnica": "Acrílico", "año": "2026", "dimensiones": "110x90cm", "estado": "Disponible", "precio": "$1.100" },
+        { "titulo": "Ventana", "coleccion": "Interiores", "imagen": "https://picsum.photos/500/650?random=6", "tecnica": "Técnica mixta", "año": "2026", "dimensiones": "70x70cm", "estado": "Vendido", "precio": "—" },
+        { "titulo": "Gesto I", "coleccion": "Abstracciones", "imagen": "https://picsum.photos/500/650?random=7", "tecnica": "Óleo", "año": "2026", "dimensiones": "150x150cm", "estado": "Disponible", "precio": "$2.000" },
+        { "titulo": "Gesto II", "coleccion": "Abstracciones", "imagen": "https://picsum.photos/500/650?random=8", "tecnica": "Acrílico", "año": "2026", "dimensiones": "100x100cm", "estado": "Disponible", "precio": "$1.300" }
+    ];
+
     const galeriasCont = document.getElementById('galerias-container');
     const imgZoom = document.getElementById('img-zoom');
     const overlay = document.getElementById('overlay');
 
-    // Función para cargar los datos
-    async function cargarContenido() {
-        try {
-            const response = await fetch('obras.json?v=' + Date.now());
-            const data = await response.json();
+    // Agrupar obras por colección
+    const grupos = {};
+    obras.forEach(o => {
+        if (!grupos[o.coleccion]) grupos[o.coleccion] = [];
+        grupos[o.coleccion].push(o);
+    });
 
-            // Agrupar por colección
-            const grupos = {};
-            data.forEach(obra => {
-                if (!grupos[obra.coleccion]) grupos[obra.coleccion] = [];
-                grupos[obra.coleccion].push(obra);
-            });
+    // Crear las secciones automáticamente
+    for (const nombre in grupos) {
+        const idCol = nombre.toLowerCase().replace(/\s+/g, '-');
+        
+        const section = document.createElement('section');
+        section.className = 'section';
+        section.id = idCol;
+        section.innerHTML = `
+            <h2 class="section-title">${nombre}</h2>
+            <div class="galeria-grid" id="grid-${idCol}"></div>
+        `;
+        galeriasCont.appendChild(section);
 
-            // Limpiar contenedores por si acaso
-            menuItems.innerHTML = '';
-            galeriasCont.innerHTML = '';
-
-            // Crear cada bloque de colección
-            for (const nombre in grupos) {
-                const idCol = nombre.toLowerCase().replace(/\s+/g, '-');
-
-                // 1. Añadir al Menú Desplegable
-                const link = document.createElement('a');
-                link.href = "#" + idCol;
-                link.innerText = nombre.toUpperCase();
+        const grid = document.getElementById('grid-' + idCol);
+        grupos[nombre].forEach(obra => {
+            const sClass = obra.estado.toLowerCase() === 'disponible' ? 'disponible' : 'vendido';
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <img src="${obra.imagen}" alt="${obra.titulo}">
+                <h3>${obra.titulo}</h3>
+                <p><strong>${obra.tecnica}</strong><br>${obra.dimensiones} · \${obra.año}</p>
+                <span class="tag \${sClass}">${obra.estado}</span>
+                <span class="precio">${obra.precio}</span>
+            `;
+            card.onclick = () => {
+                imgZoom.src = obra.imagen;
+                overlay.classList.add('active');
+            };
+            grid.appendChild(card);
+        });
+    }
+</script>
+</body>
+</html>
