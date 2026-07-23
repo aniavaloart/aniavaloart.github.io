@@ -1,154 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ania Való</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-
-<style>
-    /* --- ESTILOS GENERALES (Se mantienen iguales) --- */
-    *{ margin:0; padding:0; box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
-    body{ background:#f6f3ef; color:#111; font-family:'Inter',sans-serif; overflow-x:hidden; }
-    img{ width:100%; display:block; }
-    a{ text-decoration:none; color:inherit; }
-    .container{ width:90%; max-width:1450px; margin:auto; }
-
-    nav{ position:fixed; top:0; left:0; width:100%; background:rgba(246,243,239,0.92); backdrop-filter:blur(10px); z-index:999; padding:30px 0; border-bottom:1px solid rgba(0,0,0,0.05); }
-    .nav-inner{ display:flex; justify-content:space-between; align-items:center; }
-    .logo{ font-family:'Cormorant Garamond',serif; font-size:42px; letter-spacing:2px; }
-    .menu{ display:flex; gap:32px; align-items:center; }
-    .menu a{ font-size:13px; text-transform:uppercase; letter-spacing:2px; transition:.3s; }
-    .menu a:hover{ opacity:.5; }
-
-    .dropdown { position: relative; display: inline-block; }
-    .dropdown-content { display: none; position: absolute; background-color: #f6f3ef; min-width: 200px; box-shadow: 0px 10px 20px rgba(0,0,0,0.05); z-index: 1000; top: 100%; left: 0; padding: 15px 0; border: 1px solid rgba(0,0,0,0.05); }
-    .dropdown-content a { display: block; padding: 10px 20px; font-size: 11px !important; color: #444; }
-    .dropdown:hover .dropdown-content { display: block; }
-
-    .hero{ min-height:100vh; display:flex; align-items:center; padding-top:120px; }
-    .hero-grid{ display:grid; grid-template-columns:1.1fr 1fr; gap:70px; align-items:center; }
-    .hero-text h1{ font-family:'Cormorant Garamond',serif; font-size:105px; line-height:0.95; font-weight:400; margin-bottom:30px; }
-    .hero-text p{ font-size:18px; line-height:1.9; color:#444; max-width:550px; }
-    .hero-image img{ height:82vh; object-fit:cover; }
-    
-    .section{ padding:130px 0; }
-    .section-title{ font-family:'Cormorant Garamond',serif; font-size:72px; font-weight:400; margin-bottom:60px; }
-
-    .gallery{ display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:40px; }
-    .art-card{ transition:.4s; }
-    .art-card img{ height:450px; object-fit:cover; margin-bottom:20px; }
-    
-    .art-info h3{ font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:400; margin-bottom:5px; }
-    .art-meta { font-size: 12px; color: #777; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
-    .art-description { font-size: 14px; line-height: 1.6; color: #555; margin-bottom: 15px; }
-    
-    .art-status-row { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.06); }
-    .status-tag { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-    .disponible { color: #27ae60; }
-    .vendida { color: #999; }
-    .price { font-size: 14px; font-weight: 500; color: #111; }
-
-    footer{ padding:60px 0; border-top:1px solid rgba(0,0,0,0.08); margin-top:80px; }
-    .footer-inner{ display:flex; justify-content:space-between; align-items:center; }
-</style>
-</head>
-
-<body>
-
-<nav>
-    <div class="container nav-inner">
-        <div class="logo">ANIA VALÓ</div>
-        <div class="menu">
-            <a href="#home">Home</a>
-            <div class="dropdown">
-                <a href="#colecciones">Colecciones <i class="fa-solid fa-chevron-down" style="font-size:10px"></i></a>
-                <div id="menu-colecciones" class="dropdown-content">
-                    <!-- Aquí se cargarán los links automáticamente -->
-                </div>
-            </div>
-            <a href="#vision">Visión</a>
-            <a href="#contacto">Contacto</a>
-            <a href="https://www.instagram.com/ania_valo_art/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        </div>
-    </div>
-</nav>
-
-<section class="hero" id="home">
-    <div class="container hero-grid">
-        <div class="hero-text">
-            <h1>Arte, pensamiento y sensibilidad humana.</h1>
-            <p>"La pintura representa la parte más visual de mi universo creativo..."</p>
-        </div>
-        <div class="hero-image"><img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=1400"></div>
-    </div>
-</section>
-
-<!-- CONTENEDOR DONDE APARECERÁN LAS COLECCIONES -->
-<div id="galerias-dinamicas"></div>
-
-<footer>
-    <div class="container footer-inner">
-        <div class="footer-logo">ANIA VALÓ</div>
-        <div>© 2026</div>
-    </div>
-</footer>
-
-<script>
-    // Lector automático de obras.json
-    async function cargarObras() {
-        try {
-            const respuesta = await fetch('obras.json');
-            const datos = await respuesta.json();
-            
-            const contenedorGalerias = document.getElementById('galerias-dinamicas');
-            const contenedorMenu = document.getElementById('menu-colecciones');
-
-            datos.forEach(coleccion => {
-                // 1. Añadir al menú desplegable
-                contenedorMenu.innerHTML += `<a href="#${coleccion.id}">${coleccion.nombreColeccion}</a>`;
-
-                // 2. Crear la sección de la galería
-                let obrasHTML = '';
-                coleccion.obras.forEach(obra => {
-                    obrasHTML += `
-                        <div class="art-card">
-                            <img src="${obra.imagen}">
-                            <div class="art-info">
-                                <h3>${obra.titulo}</h3>
-                                <div class="art-meta">${obra.año} · \${obra.tamaño} · \${obra.tecnica}</div>
-                                <p class="art-description">${obra.descripcion}</p>
-                                <div class="art-status-row">
-                                    <span class="status-tag \${obra.disponible ? 'disponible' : 'vendida'}">
-                                        \${obra.disponible ? 'Disponible' : 'Vendida / Col. Privada'}
-                                    </span>
-                                    \${obra.disponible ? `<span class="price">${obra.precio}</span>` : ''}
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                });
-
-                contenedorGalerias.innerHTML += `
-                    <section class="section" id="${coleccion.id}">
-                        <div class="container">
-                            <h2 class="section-title">${coleccion.nombreColeccion}</h2>
-                            <div class="gallery">${obrasHTML}</div>
-                        </div>
-                    </section>
-                `;
-            });
-        } catch (error) {
-            console.error("Error cargando el archivo de obras:", error);
-        }
-    }
-
-    window.onload = cargarObras;
-</script>
-
-</body>
-</html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ania Való | Galería de Arte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ESTILOS GENERALES */
+        *{ margin:0; padding:0; box-sizing:border-box; }
+        html{ scroll-behavior: smooth; }
+        body{ background:#f6f3ef; color:#111; font-family:'Inter',sans-serif; line-height: 1.6; }
+        .container{ width:90%; max-width:1400px; margin:auto; }
+        
+        /* NAVEGACIÓN */
+        nav{ position:fixed; top:0; width:100%; background:rgba(246,243,239,0.95); backdrop-filter:blur(10px); z-index:999; padding:25px 0; border-bottom:1px solid rgba(0,0,0,0.05); }
+        .nav-inner{ display:flex; justify-content:space-between; align-items:center; }
+        .logo{ font-family:'Cormorant Garamond',serif; font-size:35px; letter-spacing:3px; font-weight: 400; }
+        .menu{ display:flex; gap:30px; }
+        .menu a{ font-size:11px; text-transform:uppercase; letter-spacing:2px; text-decoration:none; color:inherit; font-weight:500; transition: 0.3s; }
+        .menu a:hover{ opacity: 0.5; }
+        
+        /* SECCIONES Y TÍTULOS */
+        .section{ padding:140px 0 60px; }
+        .section-title{ font-family:'Cormorant Garamond',serif; font-size:55px; font-weight:400; margin-bottom:50px; border-bottom: 1px solid #e0ddd8; padding-bottom: 20px; text-transform: capitalize; }
+        
+        /* GALERÍA DE OBRAS */
+        .gallery{ display:grid; g
