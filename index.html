@@ -1,165 +1,891 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ania Való | Artista Visual</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-    <style>
-        /* BASE */
-        *{ margin:0; padding:0; box-sizing:border-box; }
-        html{ scroll-behavior: smooth; }
-        body{ background:#f8f6f3; color:#1a1a1a; font-family:'Inter',sans-serif; line-height: 1.7; }
-        .container{ width:88%; max-width:1300px; margin:auto; }
-        
-        /* NAVEGACIÓN MEJORADA */
-        nav{ position:fixed; top:0; width:100%; background:rgba(248,246,243,0.9); backdrop-filter:blur(15px); z-index:1000; padding:20px 0; border-bottom:1px solid rgba(0,0,0,0.03); }
-        .nav-inner{ display:flex; justify-content:space-between; align-items:center; }
-        .logo{ font-family:'Cormorant Garamond',serif; font-size:32px; letter-spacing:4px; font-weight: 300; text-decoration: none; color: #1a1a1a; }
-        
-        .menu{ display:flex; gap:35px; align-items: center; }
-        .menu a{ font-size:11px; text-transform:uppercase; letter-spacing:2px; text-decoration:none; color:inherit; font-weight:400; transition: 0.4s; }
-        .menu a:hover{ opacity: 0.5; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        /* DESPLEGABLE DE COLECCIONES */
-        .dropdown { position: relative; display: inline-block; }
-        .dropdown-trigger { cursor: pointer; }
-        .dropdown-content { 
-            display: none; position: absolute; background:#f8f6f3; min-width: 220px; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05); top: 100%; padding: 15px 0; 
-            border: 1px solid rgba(0,0,0,0.05); margin-top: 10px;
-        }
-        .dropdown-content a { display: block; padding: 10px 25px; font-size: 10px !important; border: none; }
-        .dropdown:hover .dropdown-content { display: block; }
+<title>Ania Való</title>
 
-        /* SECCIÓN HOME / HERO */
-        .hero{ height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; flex-direction: column; }
-        .hero h1{ font-family:'Cormorant Garamond',serif; font-size: 70px; font-weight: 300; margin-bottom: 20px; }
-        .hero p{ font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: #777; }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-        /* SECCIÓN VISIÓN */
-        .vision{ padding: 120px 0; background: #fff; text-align: center; }
-        .vision-content{ max-width: 800px; margin: auto; }
-        .vision h2{ font-family:'Cormorant Garamond',serif; font-size: 45px; margin-bottom: 30px; font-weight: 400; }
-        .vision p{ font-size: 18px; font-family: 'Cormorant Garamond', serif; font-style: italic; color: #444; }
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
-        /* GALERÍA DINÁMICA */
-        .section{ padding:120px 0 60px; }
-        .section-title{ font-family:'Cormorant Garamond',serif; font-size:48px; font-weight:300; margin-bottom:50px; text-align: center; }
-        .gallery{ display:grid; grid-template-columns:repeat(auto-fill, minmax(380px, 1fr)); gap:50px; }
-        .art-card{ margin-bottom: 40px; }
-        .art-card img{ width:100%; height:550px; object-fit:cover; margin-bottom:20px; filter: grayscale(0.1); transition: 0.7s; }
-        .art-card:hover img{ filter: grayscale(0); }
-        .art-info h3{ font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:400; }
-        .art-meta{ font-size:11px; color:#999; text-transform:uppercase; letter-spacing:1px; margin: 10px 0; }
-        .art-desc{ font-size:13px; color:#666; margin-bottom:15px; }
-        .art-footer{ display:flex; justify-content:space-between; padding-top:12px; border-top:1px solid #eee; font-size:12px; }
+<style>
 
-        /* CONTACTO */
-        .contacto{ padding: 120px 0; text-align: center; border-top: 1px solid #eee; }
-        .contacto h2{ font-family:'Cormorant Garamond',serif; font-size: 45px; margin-bottom: 40px; }
-        .social-links{ display: flex; justify-content: center; gap: 40px; font-size: 20px; }
-        .social-links a{ color: #1a1a1a; text-decoration: none; transition: 0.3s; }
-        .social-links a:hover{ opacity: 0.5; }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        footer{ padding:60px 0; text-align:center; font-size:10px; letter-spacing:4px; opacity:0.5; }
+html{
+    scroll-behavior:smooth;
+}
 
-        @media (max-width: 768px) {
-            .hero h1{ font-size: 45px; }
-            .gallery{ grid-template-columns: 1fr; }
-        }
-    </style>
+body{
+    background:#f6f3ef;
+    color:#111;
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+}
+
+img{
+    width:100%;
+    display:block;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.container{
+    width:90%;
+    max-width:1450px;
+    margin:auto;
+}
+
+/* NAV */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background:rgba(246,243,239,0.92);
+    backdrop-filter:blur(10px);
+    z-index:999;
+    padding:30px 0;
+    border-bottom:1px solid rgba(0,0,0,0.05);
+}
+
+.nav-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:42px;
+    letter-spacing:2px;
+}
+
+.menu{
+    display:flex;
+    gap:32px;
+    align-items:center;
+}
+
+.menu a{
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    transition:.3s;
+}
+
+.menu a:hover{
+    opacity:.5;
+}
+
+.instagram{
+    font-size:20px;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding-top:120px;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:70px;
+    align-items:center;
+}
+
+.hero-text h1{
+    font-family:'Cormorant Garamond',serif;
+    font-size:105px;
+    line-height:0.95;
+    font-weight:400;
+    margin-bottom:30px;
+}
+
+.hero-text p{
+    font-size:18px;
+    line-height:1.9;
+    color:#444;
+    max-width:550px;
+}
+
+.hero-image img{
+    height:82vh;
+    object-fit:cover;
+}
+
+/* SECTIONS */
+
+.section{
+    padding:130px 0;
+}
+
+.section-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:72px;
+    font-weight:400;
+    margin-bottom:60px;
+}
+
+/* BIO */
+
+.bio{
+    max-width:900px;
+}
+
+.bio p{
+    font-size:18px;
+    line-height:2;
+    color:#444;
+}
+
+/* COLLECTION MENU */
+
+.collection-links{
+    display:flex;
+    gap:25px;
+    flex-wrap:wrap;
+    margin-bottom:60px;
+}
+
+.collection-links a{
+    border:1px solid rgba(0,0,0,0.15);
+    padding:14px 28px;
+    border-radius:50px;
+    transition:.3s;
+    font-size:14px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.collection-links a:hover{
+    background:#111;
+    color:white;
+}
+
+/* GALLERY */
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:25px;
+}
+
+.art-card{
+    transition:.4s;
+}
+
+.art-card:hover{
+    transform:translateY(-8px);
+}
+
+.art-card img{
+    height:330px;
+    object-fit:cover;
+}
+
+.art-info{
+    padding-top:16px;
+}
+
+.art-info h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:28px;
+    font-weight:400;
+    margin-bottom:6px;
+}
+
+.art-info p{
+    font-size:14px;
+    line-height:1.6;
+    color:#555;
+}
+
+/* VISION */
+
+.vision-text{
+    max-width:900px;
+}
+
+.vision-text p{
+    font-size:20px;
+    line-height:2;
+    color:#444;
+}
+
+/* ESCRITOS */
+
+.writings{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:40px;
+}
+
+.writing{
+    border-top:1px solid rgba(0,0,0,0.1);
+    padding-top:20px;
+}
+
+.writing h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:34px;
+    margin-bottom:15px;
+    font-weight:400;
+}
+
+.writing p{
+    color:#555;
+    line-height:1.8;
+}
+
+/* CONTACT */
+
+.contact{
+    max-width:700px;
+}
+
+.contact p{
+    font-size:18px;
+    line-height:2;
+    color:#444;
+    margin-bottom:15px;
+}
+
+/* FOOTER */
+
+footer{
+    padding:60px 0;
+    border-top:1px solid rgba(0,0,0,0.08);
+    margin-top:80px;
+}
+
+.footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.footer-logo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:38px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1200px){
+
+.gallery{
+    grid-template-columns:repeat(3,1fr);
+}
+
+}
+
+@media(max-width:900px){
+
+.hero-grid{
+    grid-template-columns:1fr;
+}
+
+.hero-text h1{
+    font-size:72px;
+}
+
+.writings{
+    grid-template-columns:1fr;
+}
+
+.gallery{
+    grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:600px){
+
+.menu{
+    gap:15px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+}
+
+.menu a{
+    font-size:10px;
+}
+
+.hero-text h1{
+    font-size:52px;
+}
+
+.section-title{
+    font-size:46px;
+}
+
+.gallery{
+    grid-template-columns:1fr;
+}
+
+.hero-image img{
+    height:60vh;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
+<!-- NAV -->
+
 <nav>
-    <div class="container nav-inner">
-        <a href="#" class="logo">ANIA VALÓ</a>
-        <div class="menu">
-            <a href="#">Home</a>
-            <div class="dropdown">
-                <a class="dropdown-trigger">Colecciones <i class="fa-solid fa-chevron-down" style="font-size: 8px;"></i></a>
-                <div class="dropdown-content" id="drop-colecciones">
-                    <!-- Se llena solo -->
-                </div>
-            </div>
-            <a href="#vision">Visión</a>
-            <a href="#contacto">Contacto</a>
-        </div>
-    </div>
-</nav>
 
-<section class="hero">
-    <p>Arte • Pensamiento • Sensibilidad</p>
-    <h1>Universo Creativo</h1>
-</section>
+<div class="container nav-inner">
 
-<section class="vision" id="vision">
-    <div class="container vision-content">
-        <h2>Mi Visión</h2>
-        <p>"La pintura representa la parte más visual de mi universo creativo. A través de la materia y el color, busco puentes entre lo tangible y lo emocional, explorando la sensibilidad humana en cada trazo."</p>
-    </div>
-</section>
-
-<div id="galeria-principal">
-    <!-- Aquí se cargan las obras desde Google Sheets -->
+<div class="logo">
+ANIA VALÓ
 </div>
 
-<section class="contacto" id="contacto">
-    <div class="container">
-        <h2>Contacto</h2>
-        <p style="margin-bottom: 30px;">Para consultas sobre obras disponibles o proyectos:</p>
-        <div class="social-links">
-            <a href="https://www.instagram.com/ania_valo_art/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-            <a href="mailto:tuemail@ejemplo.com"><i class="fa-regular fa-envelope"></i></a>
-            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-        </div>
-    </div>
+<div class="menu">
+
+<a href="#home">Home</a>
+
+<a href="#biografia">Biografía</a>
+
+<a href="#colecciones">Colecciones</a>
+
+<a href="#vision">Visión</a>
+
+<a href="#escritos">Escritos</a>
+
+<a href="#contacto">Contacto</a>
+
+<a href="https://https://www.instagram.com/ania_valo_art/" target="_blank" class="instagram">
+<i class="fa-brands fa-instagram"></i>
+</a>
+
+</div>
+
+</div>
+
+</nav>
+
+<!-- HOME -->
+
+<section class="hero" id="home">
+
+<div class="container hero-grid">
+
+<div class="hero-text">
+
+<h1>
+Arte, pensamiento y sensibilidad humana.
+</h1>
+
+<p>
+"Siempre sentí la necesidad de crear, explorar y expresarme a través de distintas disciplinas.
+La pintura representa la parte más visual y estética de mi universo creativo, pero detrás de cada obra también conviven la escritura, la reflexión, las emociones, las ideas y una búsqueda constante por entender más profundamente al ser humano y la experiencia de estar vivos."
+</p>
+
+</div>
+
+<div class="hero-image">
+
+<img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=1400&auto=format&fit=crop">
+
+</div>
+
+</div>
+
 </section>
 
-<footer>ANIA VALÓ ART • 2026</footer>
+<!-- BIO -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+<section class="section" id="biografia">
 
-<script>
-    const LINK_PLANILLA = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1YP4lU1pTAVV_N9W0eNmATQfoaSqultXDHSJrlf5oEutLrpB8vaqsEuZjICM-d5c0ZypV3Htt4MtM/pub?output=csv";
+<div class="container">
 
-    async function cargarObras() {
-        Papa.parse(LINK_PLANILLA, {
-            download: true,
-            header: true,
-            complete: function(results) {
-                const datos = results.data;
-                const contenedor = document.getElementById('galeria-principal');
-                const dropDown = document.getElementById('drop-colecciones');
-                
-                contenedor.innerHTML = ''; 
-                dropDown.innerHTML = ''; 
+<h2 class="section-title">
+Biografía
+</h2>
 
-                const nombresColecciones = [...new Set(datos.map(item => item.Coleccion))].filter(c => c && c.trim() !== "");
+<div class="bio">
 
-                nombresColecciones.forEach(nombreCol => {
-                    const idCol = nombreCol.toLowerCase().replace(/ /g, "-");
-                    
-                    // Llenar el desplegable
-                    dropDown.innerHTML += `<a href="#${idCol}">${nombreCol}</a>`;
+<p>
+Ania Való es una artista y creadora multidisciplinaria uruguaya, nacida en Paysandú, cuya obra surge de una necesidad constante de explorar, cuestionar y expresar la experiencia humana a través de distintos lenguajes creativos.
+<br><br>
+Desde muy temprana edad encontró en el arte una forma natural de habitar el mundo. Creció explorando distintas disciplinas como el dibujo, la escritura, las manualidades, el teatro, la música y la creación de universos visuales e imaginarios, desarrollando una sensibilidad marcada por la observación, la introspección y la necesidad de traducir emociones, pensamientos y percepciones en expresión.
+<br><br>
+A lo largo de los años se formó en áreas vinculadas al arte, la comunicación, el diseño, la creatividad y la producción artística, transitando estudios en comunicación, diseño gráfico, creatividad y redacción publicitaria, dibujo y pintura, maquillaje artístico, gestión de producción artística y otras formas de expresión que fueron construyendo su universo creativo.
+<br><br>
+Su obra nace del cruce entre arte, pensamiento y sensibilidad humana. A través de la pintura, la escritura y la exploración visual, busca expresar sensaciones, cuestionamientos y reflexiones sobre el mundo contemporáneo, las contradicciones humanas y la forma en que habitamos esta época.
+<br><br>
+Explora tanto el arte decorativo como obras más conceptuales vinculadas a la observación social, la introspección y la experiencia humana. En su etapa más reciente, su trabajo comenzó a nutrirse también del interés por la psicología, la filosofía y la necesidad de comprender más profundamente el comportamiento humano y la realidad contemporánea.
+<br><br>
+Más que representar respuestas cerradas, su trabajo propone abrir preguntas, generar reflexión, sensibilidad y nuevas maneras de observar el mundo.
+</p>
 
-                    // Filtrar obras
-                    const obrasDeEstaCol = datos.filter(o => o.Coleccion === nombreCol);
-                    let obrasHTML = '';
+</div>
 
-                    obrasDeEstaCol.forEach(obra => {
-                        const esDisp = obra.Disponible && obra.Disponible.trim().toUpperCase() === "SI";
-                        obrasHTML += `
-                            <div class="art-card">
-                                <img src="${obra.Imagen}" alt="${obra.Titulo}">
-                                <div class="art-info">
-                                    <h3>${obra.Titulo}</h3>
-                                    <div class="art-meta">${obra.Año} • \${obra.Tamaño} • \${obra.Tecnica}</div>
-                                    <p class="art-desc">${obra.Descripcion}</p>
-                                    <div class="art-footer">
-                                        <span style="color:${esDisp ? '#27ae60' : '#999'}; font-weight:700; letter-spacing:1px; text-transform:uppercase; font-size:10px;">
-                                            \${esDisp ? 'Disponible' : 'Vendida'}
-                                        </span>
+</div>
 
+</section>
+
+<!-- COLECCIONES -->
+
+<section class="section" id="colecciones">
+
+<div class="container">
+
+<h2 class="section-title">
+Colecciones
+</h2>
+
+<div class="collection-links">
+
+<a href="#puentes">Puentes Abstractos</a>
+
+<a href="#jardines">Jardines</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PUENTES -->
+
+<section class="section" id="puentes">
+
+<div class="container">
+
+<h2 class="section-title">
+Puentes Abstractos
+</h2>
+
+<div class="gallery">
+
+<!-- 10 obras -->
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=1">
+<div class="art-info">
+<h3>Umbral</h3>
+<p>Acrílico sobre tela · 2026</p>
+</div>
+</div>
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=2">
+<div class="art-info">
+<h3>Materia</h3>
+<p>Exploración abstracta y textural.</p>
+</div>
+</div>
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=3">
+<div class="art-info">
+<h3>Silencio</h3>
+<p>Composición inspirada en el vacío.</p>
+</div>
+</div>
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=4">
+<div class="art-info">
+<h3>Puente I</h3>
+<p>Arquitectura emocional contemporánea.</p>
+</div>
+</div>
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=5">
+<div class="art-info">
+<h3>Fragmento</h3>
+<p>Materia y luz en tensión visual.</p>
+</div>
+</div>
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=6">
+<div class="art-info">
+<h3>Niebla</h3>
+<p>Texturas orgánicas y profundidad.</p>
+</div>
+</div>
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=7">
+<div class="art-info">
+<h3>Horizonte</h3>
+<p>Movimiento y equilibrio abstracto.</p>
+</div>
+</div>
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=8">
+<div class="art-info">
+<h3>Vacío</h3>
+<p>Serie minimalista contemporánea.</p>
+</div>
+</div>
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=9">
+<div class="art-info">
+<h3>Conexión</h3>
+<p>Diálogo entre estructura y emoción.</p>
+</div>
+</div>
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=10">
+<div class="art-info">
+<h3>Puente II</h3>
+<p>Exploración espacial abstracta.</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- JARDINES -->
+
+<section class="section" id="jardines">
+
+<div class="container">
+
+<h2 class="section-title">
+Jardines
+</h2>
+
+<div class="gallery">
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=11">
+<div class="art-info">
+<h3>Jardín I</h3>
+<p>Inspirado en naturaleza y silencio.</p>
+</div>
+</div>
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=12">
+<div class="art-info">
+<h3>Botánica</h3>
+<p>Color y organicidad contemporánea.</p>
+</div>
+</div>
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=13">
+<div class="art-info">
+<h3>Verde</h3>
+<p>Paisaje emocional abstracto.</p>
+</div>
+</div>
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=14">
+<div class="art-info">
+<h3>Raíces</h3>
+<p>Materia vegetal y memoria.</p>
+</div>
+</div>
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=15">
+<div class="art-info">
+<h3>Jardín II</h3>
+<p>Composición orgánica contemporánea.</p>
+</div>
+</div>
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=16">
+<div class="art-info">
+<h3>Flora</h3>
+<p>Exploración cromática natural.</p>
+</div>
+</div>
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=17">
+<div class="art-info">
+<h3>Luz</h3>
+<p>Abstracción inspirada en paisajes.</p>
+</div>
+</div>
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=18">
+<div class="art-info">
+<h3>Tiempo</h3>
+<p>Serie de contemplación visual.</p>
+</div>
+</div>
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=19">
+<div class="art-info">
+<h3>Hoja</h3>
+<p>Movimiento y organicidad.</p>
+</div>
+</div>
+
+<div class="art-card">
+<img src="https://picsum.photos/500/700?random=20">
+<div class="art-info">
+<h3>Jardín III</h3>
+<p>Naturaleza reinterpretada.</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- VISION -->
+
+<section class="section" id="vision">
+
+<div class="container">
+
+<h2 class="section-title">
+Visión
+</h2>
+
+<div class="vision-text">
+
+<p>
+La obra busca generar espacios de pausa dentro del exceso visual contemporáneo.
+Cada pieza funciona como un puente entre lo emocional y lo simbólico,
+explorando nuevas formas de sensibilidad, contemplación y conexión humana.
+<br><br>
+El proyecto integra arte, percepción y transformación interior,
+proponiendo una estética silenciosa pero intensa.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ESCRITOS -->
+
+<!-- REEMPLAZA ÚNICAMENTE LA SECCIÓN DE "ESCRITOS" POR ESTA -->
+
+<!-- ESCRITOS -->
+
+<!-- REEMPLAZA TODA LA SECCIÓN "ESCRITOS" POR ESTA -->
+
+<!-- ESCRITOS -->
+
+<section class="section" id="escritos">
+
+<div class="container">
+
+<h2 class="section-title">
+Escritos
+</h2>
+
+<div class="gallery">
+
+<!-- ESCRITO 1 -->
+
+<a href="escrito1.html" class="art-card">
+
+<img src="https://picsum.photos/600/800?random=31">
+
+<div class="art-info">
+<h3>La materia y el silencio</h3>
+<p>
+Reflexión sobre textura, vacío y contemplación.
+</p>
+</div>
+
+</a>
+
+<!-- ESCRITO 2 -->
+
+<a href="escrito2.html" class="art-card">
+
+<img src="https://picsum.photos/600/800?random=32">
+
+<div class="art-info">
+<h3>Contemplar</h3>
+<p>
+La pausa visual en la era digital.
+</p>
+</div>
+
+</a>
+
+<!-- ESCRITO 3 -->
+
+<a href="escrito3.html" class="art-card">
+
+<img src="https://picsum.photos/600/800?random=33">
+
+<div class="art-info">
+<h3>Paisajes internos</h3>
+<p>
+El paisaje emocional como lenguaje.
+</p>
+</div>
+
+</a>
+
+<!-- ESCRITO 4 -->
+
+<a href="escrito4.html" class="art-card">
+
+<img src="https://picsum.photos/600/800?random=34">
+
+<div class="art-info">
+<h3>El vacío</h3>
+<p>
+Espacios silenciosos y percepción.
+</p>
+</div>
+
+</a>
+
+<!-- ESCRITO 5 -->
+
+<a href="escrito5.html" class="art-card">
+
+<img src="https://picsum.photos/600/800?random=35">
+
+<div class="art-info">
+<h3>Tiempo lento</h3>
+<p>
+La experiencia artística y el tiempo.
+</p>
+</div>
+
+</a>
+
+<!-- ESCRITO 6 -->
+
+<a href="escrito6.html" class="art-card">
+
+<img src="https://picsum.photos/600/800?random=36">
+
+<div class="art-info">
+<h3>Arquitecturas emocionales</h3>
+<p>
+Construcción simbólica del espacio.
+</p>
+</div>
+
+</a>
+
+<!-- ESCRITO 7 -->
+
+<a href="escrito7.html" class="art-card">
+
+<img src="https://picsum.photos/600/800?random=37">
+
+<div class="art-info">
+<h3>Lo invisible</h3>
+<p>
+La percepción más allá de la forma.
+</p>
+</div>
+
+</a>
+
+<!-- ESCRITO 8 -->
+
+<a href="escrito8.html" class="art-card">
+
+<img src="https://picsum.photos/600/800?random=38">
+
+<div class="art-info">
+<h3>Naturaleza abstracta</h3>
+<p>
+Organicidad y abstracción contemporánea.
+</p>
+</div>
+
+</a>
+
+<!-- ESCRITO 9 -->
+
+<a href="escrito9.html" class="art-card">
+
+<img src="https://picsum.photos/600/800?random=39">
+
+<div class="art-info">
+<h3>Presencia</h3>
+<p>
+La atención como experiencia estética.
+</p>
+</div>
+
+</a>
+
+<!-- ESCRITO 10 -->
+
+<a href="escrito10.html" class="art-card">
+
+<img src="https://picsum.photos/600/800?random=40">
+
+<div class="art-info">
+<h3>Materia viva</h3>
+<p>
+La superficie como memoria física.
+</p>
+</div>
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="container footer-inner">
+
+<div class="footer-logo">
+ANIA VALÓ
+</div>
+
+<div>
+© 2026
+</div>
+
+</div>
+
+</footer>
+
+</body>
+</html>
