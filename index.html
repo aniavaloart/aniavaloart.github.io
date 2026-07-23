@@ -79,11 +79,28 @@
     .section-title{ font-family:'Cormorant Garamond',serif; font-size: clamp(35px, 6vw, 72px); font-weight:400; margin-bottom:40px; text-transform: capitalize; }
 
     /* GALERÍA RESPONSIVA */
-    .gallery{ 
-        display:grid; 
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-        gap:30px; 
+       /* GALERÍA RESPONSIVA: 4 columnas en PC, 2 en celular */
+    .gallery { 
+        display: grid; 
+        grid-template-columns: repeat(4, 1fr); /* 4 columnas por defecto (PC) */
+        gap: 20px; 
     }
+
+    /* Ajuste para tablets (opcional, para que no queden muy apretadas) */
+    @media (max-width: 1024px) {
+        .gallery { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* Ajuste para celulares */
+    @media (max-width: 600px) {
+        .gallery { 
+            grid-template-columns: repeat(2, 1fr); /* 2 columnas en celular */
+            gap: 15px; /* Espacio un poco más chico para que entre mejor */
+        }
+        .art-card img { height: 250px; } /* Imagen más baja para que se vea bien en 2 columnas */
+        .art-info h3 { font-size: 18px; } /* Título un poco más chico */
+    }
+
     .art-card img{ height:400px; object-fit:cover; margin-bottom:20px; background: #eee; }
     .art-info h3{ font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:400; margin-bottom:5px; }
     .art-meta { font-size: 11px; color: #777; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
