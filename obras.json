@@ -18,15 +18,5 @@
     "estado": "Vendido",
     "precio": "—",
     "descripcion": "Fragmentos de naturaleza reinterpretados desde la memoria."
-  },
-  {
-    "titulo": "Estructura I",
-    "imagen": "https://images.unsplash.com/photo-1515405299443-f71bb768063e?w=800",
-    "tecnica": "Técnica mixta",
-    "año": "2026",
-    "dimensiones": "150 x 150 cm",
-    "estado": "Disponible",
-    "precio": "$2.500",
-    "descripcion": "La arquitectura emocional de los espacios que habitamos."
   }
 ]
