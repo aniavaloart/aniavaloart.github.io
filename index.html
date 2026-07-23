@@ -92,14 +92,21 @@
     }
 
     /* Ajuste para celulares */
+    /* PEGA ESTO */
     @media (max-width: 600px) {
         .gallery { 
-            grid-template-columns: repeat(2, 1fr); /* 2 columnas en celular */
-            gap: 15px; /* Espacio un poco más chico para que entre mejor */
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 15px; 
         }
-        .art-card img { height: 250px; } /* Imagen más baja para que se vea bien en 2 columnas */
-        .art-info h3 { font-size: 18px; } /* Título un poco más chico */
+        .art-card img { 
+            aspect-ratio: 1 / 1; /* Esto hace que sean cuadradas */
+            height: auto;        /* Esto quita lo alargado */
+            object-fit: cover;   /* Esto evita que se deformen */
+            margin-bottom: 10px;
+        }
+        .art-info h3 { font-size: 16px; }
     }
+
 
     .art-card img{ height:400px; object-fit:cover; margin-bottom:20px; background: #eee; }
     .art-info h3{ font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:400; margin-bottom:5px; }
