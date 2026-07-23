@@ -22,47 +22,45 @@
         .dropdown { position: relative; }
         .dropdown-content { 
             display: none; position: absolute; top: 100%; left: 0; 
-            background: #f6f3ef; min-width: 180px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
+            background: #f6f3ef; min-width: 200px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
             padding: 10px 0; border: 1px solid #ddd; margin-top: 10px;
         }
         .dropdown:hover .dropdown-content { display: block; }
         .dropdown-content a { display: block; padding: 10px 20px; border-bottom: 1px solid rgba(0,0,0,0.03); }
 
-        /* HERO SECCIÓN */
+        /* PORTADA (HERO) */
         .hero { min-height:100vh; display:flex; align-items:center; padding-top:80px; }
         .hero-grid { display:grid; grid-template-columns: 1fr 1fr; gap:50px; width:90%; max-width:1400px; margin:auto; align-items:center; }
         .hero-text h1 { font-family:'Cormorant Garamond', serif; font-size:clamp(40px, 6vw, 80px); line-height:1.1; margin-bottom:20px; }
         .hero-image img { width:100%; height:80vh; object-fit:cover; }
 
-        /* SECCIONES FIJAS */
+        /* SECCIONES */
         .section { padding:100px 0; width:90%; max-width:1400px; margin:auto; }
-        .section-title { font-family:'Cormorant Garamond', serif; font-size:42px; margin-bottom:40px; border-bottom:1px solid #111; padding-bottom:10px; text-transform: capitalize; }
+        .section-title { font-family:'Cormorant Garamond', serif; font-size:42px; margin-bottom:40px; border-bottom:1px solid #111; padding-bottom:10px; }
         .bio-text { max-width:800px; font-size:18px; color:#444; }
 
-        /* GRID DE GALERÍA (4 PC / 2 MÓVIL) */
+        /* GALERÍA GRID (4 PC / 2 MÓVIL) */
         .galeria-grid { display:grid; grid-template-columns: repeat(4, 1fr); gap:30px; }
         @media (max-width: 1000px) { .galeria-grid { grid-template-columns: repeat(2, 1fr); gap:15px; } }
 
-        /* TARJETA DE OBRA */
-        .obra-card { background:white; padding:15px; transition:0.4s ease; cursor: zoom-in; }
-        .obra-card img { width:100%; aspect-ratio:4/5; object-fit:cover; margin-bottom:15px; }
+        /* TARJETA OBRA */
+        .card { background:white; padding:15px; transition:0.4s ease; cursor: pointer; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .card img { width:100%; aspect-ratio:4/5; object-fit:cover; margin-bottom:15px; }
         
-        /* ZOOM (PRIMER PLANO) */
-        .obra-card.active { 
-            position:fixed; top:50%; left:50%; transform:translate(-50%, -50%) scale(1.1); 
-            z-index:2000; width:450px; max-width:90%; box-shadow:0 0 100px rgba(0,0,0,0.4); 
-        }
-        .overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1500; }
-        .overlay.active { display:block; }
+        /* ZOOM */
+        .overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:2000; justify-content:center; align-items:center; }
+        .overlay.active { display:flex; }
+        .overlay img { max-height:90vh; max-width:90vw; }
 
-        .tag-estado { display:inline-block; padding:3px 8px; font-size:10px; text-transform:uppercase; margin-top:10px; font-weight:bold; }
+        .tag { display:inline-block; padding:3px 8px; font-size:10px; text-transform:uppercase; margin-top:10px; font-weight:bold; }
         .disponible { background:#e8f5e9; color:#2e7d32; }
         .vendido { background:#f5f5f5; color:#999; }
     </style>
 </head>
 <body>
 
-<div class="overlay" id="overlay"></div>
+<div class="overlay" id="overlay"><img src="" id="img-zoom"></div>
 
 <nav>
     <div class="nav-inner">
@@ -72,9 +70,7 @@
             <li><a href="#biografia">Biografía</a></li>
             <li class="dropdown">
                 <a>Colecciones ▼</a>
-                <div class="dropdown-content" id="menu-colecciones">
-                    <!-- Se llena solo -->
-                </div>
+                <div class="dropdown-content" id="menu-cols"></div>
             </li>
             <li><a href="#vision">Visión</a></li>
             <li><a href="#contacto">Contacto</a></li>
@@ -82,7 +78,6 @@
     </div>
 </nav>
 
-<!-- PORTADA -->
 <section class="hero" id="home">
     <div class="hero-grid">
         <div class="hero-text">
@@ -90,13 +85,76 @@
             <p>"La pintura representa la parte más visual y estética de mi universo creativo..."</p>
         </div>
         <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1200" alt="Ania Való Art">
+            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1200" alt="Ania Való">
         </div>
     </div>
 </section>
 
-<!-- BIOGRAFÍA -->
 <section class="section" id="biografia">
     <h2 class="section-title">Biografía</h2>
-    <div class="bio-text">
-        <p>Ania Való es una artista multidisciplinaria uruguaya. Su obra nace del cruce entre el arte, el pensamiento y la sensibilidad humana, explorando texturas y silencios.</p>
+    <div class="bio-text"><p>Ania Való es una artista multidisciplinaria uruguaya. Su obra explora texturas y silencios...</p></div>
+</section>
+
+<!-- Aquí se inyectan las colecciones -->
+<div id="contenedor-galerias"></div>
+
+<section class="section" id="vision">
+    <h2 class="section-title">Visión</h2>
+    <div class="bio-text"><p>Mi visión artística busca conectar con lo intangible...</p></div>
+</section>
+
+<script>
+    const overlay = document.getElementById('overlay');
+    const imgZoom = document.getElementById('img-zoom');
+    const menuCols = document.getElementById('menu-cols');
+    const container = document.getElementById('contenedor-galerias');
+
+    fetch('obras.json?v=' + Math.random())
+    .then(res => res.json())
+    .then(data => {
+        const grupos = {};
+        data.forEach(o => {
+            if(!grupos[o.coleccion]) grupos[o.coleccion] = [];
+            grupos[o.coleccion].push(o);
+        });
+
+        Object.keys(grupos).forEach(nombre => {
+            const id = nombre.toLowerCase().replace(/\s+/g, '-');
+            
+            // Crear Sección
+            const sec = document.createElement('section');
+            sec.className = 'section';
+            sec.id = id;
+            sec.innerHTML = `<h2 class="section-title">${nombre}</h2><div class="galeria-grid" id="grid-${id}"></div>`;
+            container.appendChild(sec);
+
+            // Llenar Grid
+            const grid = document.getElementById('grid-' + id);
+            grupos[nombre].forEach(obra => {
+                const sClass = obra.estado.toLowerCase() === 'disponible' ? 'disponible' : 'vendido';
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <img src="${obra.imagen}">
+                    <h3 style="font-family:Cormorant Garamond; font-size:22px;">${obra.titulo}</h3>
+                    <p style="font-size:12px; color:#666;"><strong>${obra.tecnica}</strong><br>${obra.dimensiones} · \${obra.año}</p>
+                    <p style="font-size:13px; margin-top:8px;">${obra.descripcion}</p>
+                    <span class="tag \${sClass}">${obra.estado}</span>
+                    \${obra.estado.toLowerCase() === 'disponible' ? `<div style="font-weight:bold; margin-top:5px;">${obra.precio}</div>` : ''}
+                `;
+                card.onclick = () => { imgZoom.src = obra.imagen; overlay.classList.add('active'); };
+                grid.appendChild(card);
+            });
+
+            // Añadir al Menú
+            const a = document.createElement('a');
+            a.href = "#" + id;
+            a.innerText = nombre;
+            menuCols.appendChild(a);
+        });
+    });
+
+    overlay.onclick = () => overlay.classList.remove('active');
+</script>
+</body>
+</html>
