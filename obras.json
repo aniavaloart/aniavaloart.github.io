@@ -1,90 +1,10 @@
 [
-  {
-    "titulo": "Umbral I",
-    "coleccion": "puentes",
-    "imagen": "https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=800",
-    "tecnica": "Óleo sobre lino",
-    "año": "2026",
-    "dimensiones": "120x100cm",
-    "estado": "Disponible",
-    "precio": "$1.200",
-    "descripcion": "Exploración de espacios liminales."
-  },
-  {
-    "titulo": "Umbral II",
-    "coleccion": "puentes",
-    "imagen": "https://images.unsplash.com/photo-1515405299443-f71bb768063e?w=800",
-    "tecnica": "Técnica mixta",
-    "año": "2026",
-    "dimensiones": "100x100cm",
-    "estado": "Vendido",
-    "precio": "—",
-    "descripcion": "La estructura del silencio."
-  },
-  {
-    "titulo": "Brotar",
-    "coleccion": "jardines",
-    "imagen": "https://images.unsplash.com/photo-1549490349-8643362247b5?w=800",
-    "tecnica": "Acrílico",
-    "año": "2025",
-    "dimensiones": "80x80cm",
-    "estado": "Disponible",
-    "precio": "$850",
-    "descripcion": "Naturaleza en expansión."
-  },
-  {
-    "titulo": "Raíces",
-    "coleccion": "jardines",
-    "imagen": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800",
-    "tecnica": "Óleo",
-    "año": "2025",
-    "dimensiones": "90x90cm",
-    "estado": "Disponible",
-    "precio": "$900",
-    "descripcion": "La memoria de la tierra."
-  },
-  {
-    "titulo": "Refugio",
-    "coleccion": "interiores",
-    "imagen": "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800",
-    "tecnica": "Acrílico sobre tela",
-    "año": "2026",
-    "dimensiones": "110x90cm",
-    "estado": "Disponible",
-    "precio": "$1.100",
-    "descripcion": "El espacio habitado."
-  },
-  {
-    "titulo": "Ventana",
-    "coleccion": "interiores",
-    "imagen": "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800",
-    "tecnica": "Técnica mixta",
-    "año": "2026",
-    "dimensiones": "70x70cm",
-    "estado": "Vendido",
-    "precio": "—",
-    "descripcion": "Luz filtrada."
-  },
-  {
-    "titulo": "Gesto I",
-    "coleccion": "abstracciones",
-    "imagen": "https://images.unsplash.com/photo-1541119638723-c51cbe2262aa?w=800",
-    "tecnica": "Óleo",
-    "año": "2026",
-    "dimensiones": "150x150cm",
-    "estado": "Disponible",
-    "precio": "$2.000",
-    "descripcion": "Movimiento puro."
-  },
-  {
-    "titulo": "Gesto II",
-    "coleccion": "abstracciones",
-    "imagen": "https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?w=800",
-    "tecnica": "Acrílico",
-    "año": "2026",
-    "dimensiones": "100x100cm",
-    "estado": "Disponible",
-    "precio": "$1.300",
-    "descripcion": "La fuerza del trazo."
-  }
+  { "titulo": "Puente I", "coleccion": "puentes", "imagen": "https://picsum.photos/500/600?random=1", "tecnica": "Óleo", "año": "2026", "dimensiones": "100x80cm", "estado": "Disponible", "precio": "$1000", "descripcion": "Serie Puentes." },
+  { "titulo": "Puente II", "coleccion": "puentes", "imagen": "https://picsum.photos/500/600?random=2", "tecnica": "Óleo", "año": "2026", "dimensiones": "100x80cm", "estado": "Vendido", "precio": "—", "descripcion": "Serie Puentes." },
+  { "titulo": "Jardín I", "coleccion": "jardines", "imagen": "https://picsum.photos/500/600?random=3", "tecnica": "Acrílico", "año": "2025", "dimensiones": "80x80cm", "estado": "Disponible", "precio": "$800", "descripcion": "Serie Jardines." },
+  { "titulo": "Jardín II", "coleccion": "jardines", "imagen": "https://picsum.photos/500/600?random=4", "tecnica": "Acrílico", "año": "2025", "dimensiones": "80x80cm", "estado": "Disponible", "precio": "$800", "descripcion": "Serie Jardines." },
+  { "titulo": "Interior I", "coleccion": "interiores", "imagen": "https://picsum.photos/500/600?random=5", "tecnica": "Mixta", "año": "2026", "dimensiones": "90x70cm", "estado": "Disponible", "precio": "$950", "descripcion": "Serie Interiores." },
+  { "titulo": "Interior II", "coleccion": "interiores", "imagen": "https://picsum.photos/500/600?random=6", "tecnica": "Mixta", "año": "2026", "dimensiones": "90x70cm", "estado": "Vendido", "precio": "—", "descripcion": "Serie Interiores." },
+  { "titulo": "Abstracción I", "coleccion": "abstracciones", "imagen": "https://picsum.photos/500/600?random=7", "tecnica": "Óleo", "año": "2026", "dimensiones": "120x120cm", "estado": "Disponible", "precio": "$1500", "descripcion": "Serie Abstracciones." },
+  { "titulo": "Abstracción II", "coleccion": "abstracciones", "imagen": "https://picsum.photos/500/600?random=8", "tecnica": "Óleo", "año": "2026", "dimensiones": "120x120cm", "estado": "Disponible", "precio": "$1500", "descripcion": "Serie Abstracciones." }
 ]
