@@ -3,26 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ania Való | Galería de Arte</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Ania Való | Artista Visual</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
     <style>
-        /* ESTILOS GENERALES */
+        /* BASE */
         *{ margin:0; padding:0; box-sizing:border-box; }
         html{ scroll-behavior: smooth; }
-        body{ background:#f6f3ef; color:#111; font-family:'Inter',sans-serif; line-height: 1.6; }
-        .container{ width:90%; max-width:1400px; margin:auto; }
+        body{ background:#f8f6f3; color:#1a1a1a; font-family:'Inter',sans-serif; line-height: 1.7; }
+        .container{ width:88%; max-width:1300px; margin:auto; }
         
-        /* NAVEGACIÓN */
-        nav{ position:fixed; top:0; width:100%; background:rgba(246,243,239,0.95); backdrop-filter:blur(10px); z-index:999; padding:25px 0; border-bottom:1px solid rgba(0,0,0,0.05); }
+        /* NAVEGACIÓN MEJORADA */
+        nav{ position:fixed; top:0; width:100%; background:rgba(248,246,243,0.9); backdrop-filter:blur(15px); z-index:1000; padding:20px 0; border-bottom:1px solid rgba(0,0,0,0.03); }
         .nav-inner{ display:flex; justify-content:space-between; align-items:center; }
-        .logo{ font-family:'Cormorant Garamond',serif; font-size:35px; letter-spacing:3px; font-weight: 400; }
-        .menu{ display:flex; gap:30px; }
-        .menu a{ font-size:11px; text-transform:uppercase; letter-spacing:2px; text-decoration:none; color:inherit; font-weight:500; transition: 0.3s; }
+        .logo{ font-family:'Cormorant Garamond',serif; font-size:32px; letter-spacing:4px; font-weight: 300; text-decoration: none; color: #1a1a1a; }
+        
+        .menu{ display:flex; gap:35px; align-items: center; }
+        .menu a{ font-size:11px; text-transform:uppercase; letter-spacing:2px; text-decoration:none; color:inherit; font-weight:400; transition: 0.4s; }
         .menu a:hover{ opacity: 0.5; }
-        
-        /* SECCIONES Y TÍTULOS */
-        .section{ padding:140px 0 60px; }
-        .section-title{ font-family:'Cormorant Garamond',serif; font-size:55px; font-weight:400; margin-bottom:50px; border-bottom: 1px solid #e0ddd8; padding-bottom: 20px; text-transform: capitalize; }
-        
-        /* GALERÍA DE OBRAS */
-        .gallery{ display:grid; g
+
+        /* DESPLEGABLE DE COLECCIONES */
+        .dropdown { position: relative; display: inline-block; }
+        .dropdown-trigger { cursor: pointer; }
+        .dropdown-content { 
+            display: none; position: absolute; background:#f8f6f3; min-width: 220px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05); top: 100%; padding: 15px 0; 
+            border: 1px solid rgba(0,0,0,0.05); margin-top: 10px;
+        }
+        .dropdown-content a { display: block; padding: 10px 25px; font-size: 10px !important; border: none; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* SECCIÓN HOME / HERO */
+        .hero{ height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; flex-direction: column; }
+        .hero h1{ font-family:'Cormorant Garamond',serif; font-size: 70px; font-weight: 300; margin-bottom: 20px; }
+        .hero p{ font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: #777; }
+
+        /* SECCIÓN VISIÓN */
+        .vision{ padding: 120px 0; background: #fff; text-align: center; }
+        .vision-content{ max-width: 800px; margin: auto; }
+        .vision h2{ font-family:'Cormorant Garamond',serif; font-size: 45px; margin-bottom: 30px; font-weight: 400; }
+        .vision p{ font-size: 18px; font-family: 'Cormorant Garamond', serif; font-style: italic; color: #444; }
+
+        /* GALERÍA DINÁMICA */
+        .section{ padding:120px 0 60px; }
+        .section-title{ font-family:'Cormorant Garamond',serif; font-size:48px; font-weight:300; margin-bottom:50px; text-align: center; }
+        .gallery{ display:grid; grid-template-columns:repeat(auto-fill, minmax(380px, 1fr)); gap:50px; }
+        .art-card{ margin-bottom: 40px; }
+        .art-card img{ width:100%; height:550px; object-fit:cover; margin-bottom:20px; filter: grayscale(0.1); transition: 0.7s; }
+        .art-card:hover img{ filter: grayscale(0); }
+        .art-info h3{ font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:400; }
+        .art-meta{ font-size:11px; color:#999; text-transform:uppercase; letter-spacing:1px; margin: 10px 0; }
+        .art-desc{ font-size:13px; color:#666; margin-bottom:15px; }
+        .art-footer{ display:flex; justify-content:space-between; padding-top:12px; border-top:1px solid #eee; font-size:12px; }
+
+        /* CONTACTO */
+        .contacto{ padding: 120px 0; text-align: center; border-top: 1px solid #eee; }
+        .contacto h2{ font-family:'Cormorant Garamond',serif; font-size: 45px; margin-bottom: 40px; }
+        .social-links{ display: flex; justify-content: center; gap: 40px; font-size: 20px; }
+        .social-links a{ color: #1a1a1a; text-decoration: none; transition: 0.3s; }
+        .social-links a:hover{ opacity: 0.5; }
+
+        footer{ padding:60px 0; text-align:center; font-size:10px; letter-spacing:4px; opacity:0.5; }
+
+        @media (max-width: 768px) {
+            .hero h1{ font-size: 45px; }
+            .gallery{ grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container nav-inner">
+        <a href="#" class="logo">ANIA VALÓ</a>
+        <div class="menu">
+            <a href="#">Home</a>
+            <div class="dropdown">
+                <a class="dropdown-trigger">Colecciones <i class="fa-solid fa-chevron-down" style="font-size: 8px;"></i></a>
+                <div class="dropdown-content" id="drop-colecciones">
+                    <!-- Se llena solo -->
+                </div>
+            </div>
+            <a href="#vision">Visión</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <p>Arte • Pensamiento • Sensibilidad</p>
+    <h1>Universo Creativo</h1>
+</section>
+
+<section class="vision" id="vision">
+    <div class="container vision-content">
+        <h2>Mi Visión</h2>
+        <p>"La pintura representa la parte más visual de mi universo creativo. A través de la materia y el color, busco puentes entre lo tangible y lo emocional, explorando la sensibilidad humana en cada trazo."</p>
+    </div>
+</section>
+
+<div id="galeria-principal">
+    <!-- Aquí se cargan las obras desde Google Sheets -->
+</div>
+
+<section class="contacto" id="contacto">
+    <div class="container">
+        <h2>Contacto</h2>
+        <p style="margin-bottom: 30px;">Para consultas sobre obras disponibles o proyectos:</p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/ania_valo_art/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="mailto:tuemail@ejemplo.com"><i class="fa-regular fa-envelope"></i></a>
+            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+    </div>
+</section>
+
+<footer>ANIA VALÓ ART • 2026</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+
+<script>
+    const LINK_PLANILLA = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1YP4lU1pTAVV_N9W0eNmATQfoaSqultXDHSJrlf5oEutLrpB8vaqsEuZjICM-d5c0ZypV3Htt4MtM/pub?output=csv";
+
+    async function cargarObras() {
+        Papa.parse(LINK_PLANILLA, {
+            download: true,
+            header: true,
+            complete: function(results) {
+                const datos = results.data;
+                const contenedor = document.getElementById('galeria-principal');
+                const dropDown = document.getElementById('drop-colecciones');
+                
+                contenedor.innerHTML = ''; 
+                dropDown.innerHTML = ''; 
+
+                const nombresColecciones = [...new Set(datos.map(item => item.Coleccion))].filter(c => c && c.trim() !== "");
+
+                nombresColecciones.forEach(nombreCol => {
+                    const idCol = nombreCol.toLowerCase().replace(/ /g, "-");
+                    
+                    // Llenar el desplegable
+                    dropDown.innerHTML += `<a href="#${idCol}">${nombreCol}</a>`;
+
+                    // Filtrar obras
+                    const obrasDeEstaCol = datos.filter(o => o.Coleccion === nombreCol);
+                    let obrasHTML = '';
+
+                    obrasDeEstaCol.forEach(obra => {
+                        const esDisp = obra.Disponible && obra.Disponible.trim().toUpperCase() === "SI";
+                        obrasHTML += `
+                            <div class="art-card">
+                                <img src="${obra.Imagen}" alt="${obra.Titulo}">
+                                <div class="art-info">
+                                    <h3>${obra.Titulo}</h3>
+                                    <div class="art-meta">${obra.Año} • \${obra.Tamaño} • \${obra.Tecnica}</div>
+                                    <p class="art-desc">${obra.Descripcion}</p>
+                                    <div class="art-footer">
+                                        <span style="color:${esDisp ? '#27ae60' : '#999'}; font-weight:700; letter-spacing:1px; text-transform:uppercase; font-size:10px;">
+                                            \${esDisp ? 'Disponible' : 'Vendida'}
+                                        </span>
+
