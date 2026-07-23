@@ -1,23 +1,32 @@
-
 [
   {
-    "titulo": "Umbral",
-    "imagen": "https://picsum.photos/500/700?random=1",
-    "tecnica": "Acrílico sobre tela",
+    "titulo": "Umbral de Silencio",
+    "imagen": "https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=800",
+    "tecnica": "Óleo sobre lino",
     "año": "2026",
-    "dimensiones": "100 x 120 cm",
+    "dimensiones": "120 x 100 cm",
     "estado": "Disponible",
-    "precio": "$850",
-    "descripcion": "Una exploración sobre el paso del tiempo."
+    "precio": "$1.200",
+    "descripcion": "Una pieza que explora el vacío y la introspección humana."
   },
   {
-    "titulo": "Materia",
-    "imagen": "https://picsum.photos/500/700?random=2",
-    "tecnica": "Óleo y técnica mixta",
+    "titulo": "Jardín Etéreo",
+    "imagen": "https://images.unsplash.com/photo-1549490349-8643362247b5?w=800",
+    "tecnica": "Acrílico y texturas",
     "año": "2025",
     "dimensiones": "80 x 80 cm",
     "estado": "Vendido",
     "precio": "—",
-    "descripcion": "Texturas orgánicas inspiradas en la naturaleza."
+    "descripcion": "Fragmentos de naturaleza reinterpretados desde la memoria."
+  },
+  {
+    "titulo": "Estructura I",
+    "imagen": "https://images.unsplash.com/photo-1515405299443-f71bb768063e?w=800",
+    "tecnica": "Técnica mixta",
+    "año": "2026",
+    "dimensiones": "150 x 150 cm",
+    "estado": "Disponible",
+    "precio": "$2.500",
+    "descripcion": "La arquitectura emocional de los espacios que habitamos."
   }
 ]
