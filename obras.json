@@ -1,90 +1,44 @@
 [
   {
-    "titulo": "Umbral I",
-    "coleccion": "Puentes Abstractos",
-    "imagen": "https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=800",
-    "tecnica": "Óleo sobre lino",
-    "año": "2026",
-    "dimensiones": "120x100cm",
-    "estado": "Disponible",
-    "precio": "$1.200",
-    "descripcion": "Serie Puentes."
+    "nombreColeccion": "Puentes Abstractos",
+    "id": "puentes",
+    "obras": [
+      {
+        "titulo": "Umbral",
+        "año": "2026",
+        "tamaño": "100x120cm",
+        "tecnica": "Acrílico sobre tela",
+        "descripcion": "Exploración sobre los límites de la percepción.",
+        "disponible": true,
+        "precio": "$850 USD",
+        "imagen": "https://picsum.photos/500/700?random=1"
+      },
+      {
+        "titulo": "Materia",
+        "año": "2025",
+        "tamaño": "80x80cm",
+        "tecnica": "Técnica mixta",
+        "descripcion": "Estudio textural sobre la permanencia.",
+        "disponible": false,
+        "precio": "",
+        "imagen": "https://picsum.photos/500/700?random=2"
+      }
+    ]
   },
   {
-    "titulo": "Umbral II",
-    "coleccion": "Puentes Abstractos",
-    "imagen": "https://images.unsplash.com/photo-1515405299443-f71bb768063e?w=800",
-    "tecnica": "Técnica mixta",
-    "año": "2026",
-    "dimensiones": "100x100cm",
-    "estado": "Vendido",
-    "precio": "—",
-    "descripcion": "Serie Puentes."
-  },
-  {
-    "titulo": "Brotar",
-    "coleccion": "Jardines",
-    "imagen": "https://images.unsplash.com/photo-1549490349-8643362247b5?w=800",
-    "tecnica": "Acrílico",
-    "año": "2025",
-    "dimensiones": "80x80cm",
-    "estado": "Disponible",
-    "precio": "$850",
-    "descripcion": "Serie Jardines."
-  },
-  {
-    "titulo": "Raíces",
-    "coleccion": "Jardines",
-    "imagen": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800",
-    "tecnica": "Óleo",
-    "año": "2025",
-    "dimensiones": "90x90cm",
-    "estado": "Disponible",
-    "precio": "$900",
-    "descripcion": "Serie Jardines."
-  },
-  {
-    "titulo": "Refugio",
-    "coleccion": "Interiores",
-    "imagen": "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800",
-    "tecnica": "Acrílico",
-    "año": "2026",
-    "dimensiones": "110x90cm",
-    "estado": "Disponible",
-    "precio": "$1.100",
-    "descripcion": "Serie Interiores."
-  },
-  {
-    "titulo": "Ventana",
-    "coleccion": "Interiores",
-    "imagen": "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800",
-    "tecnica": "Técnica mixta",
-    "año": "2026",
-    "dimensiones": "70x70cm",
-    "estado": "Vendido",
-    "precio": "—",
-    "descripcion": "Serie Interiores."
-  },
-  {
-    "titulo": "Gesto I",
-    "coleccion": "Abstracciones",
-    "imagen": "https://images.unsplash.com/photo-1541119638723-c51cbe2262aa?w=800",
-    "tecnica": "Óleo",
-    "año": "2026",
-    "dimensiones": "150x150cm",
-    "estado": "Disponible",
-    "precio": "$2.000",
-    "descripcion": "Serie Abstracciones."
-  },
-  {
-    "titulo": "Gesto II",
-    "coleccion": "Abstracciones",
-    "imagen": "https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?w=800",
-    "tecnica": "Acrílico",
-    "año": "2026",
-    "dimensiones": "100x100cm",
-    "estado": "Disponible",
-    "precio": "$1.300",
-    "descripcion": "Serie Abstracciones."
+    "nombreColeccion": "Jardines",
+    "id": "jardines",
+    "obras": [
+      {
+        "titulo": "Jardín Interior I",
+        "año": "2026",
+        "tamaño": "90x110cm",
+        "tecnica": "Óleo y técnica mixta",
+        "descripcion": "Interpretación abstracta de la naturaleza.",
+        "disponible": true,
+        "precio": "$920 USD",
+        "imagen": "https://picsum.photos/500/700?random=11"
+      }
+    ]
   }
 ]
