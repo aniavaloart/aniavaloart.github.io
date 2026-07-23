@@ -144,21 +144,15 @@
             const obras = data.filter(item => (item.Coleccion || item.Colección) === col);
             let cardsHTML = '';
 
-                        obras.forEach(o => {
-                // 1. Verificamos disponibilidad (SI o SÍ)
-                const dispVal = (o.Disponible || "").trim().toUpperCase();
-                const disp = dispVal === "SI" || dispVal === "SÍ";
-
-                // 2. Armamos la tarjeta (SIN las barras invertidas que rompen el código)
+            obras.forEach(o => {
+                const disp = (o.Disponible || "").trim().toUpperCase() === "SI";
                 cardsHTML += `
                     <div class="art-card">
                         <img src="${o.Imagen}" onerror="this.src='https://via.placeholder.com/500x700?text=Cargando...'">
                         <div class="art-info">
-                            <h3>${o.Titulo || o.Título || 'Sin título'}</h3>
-                            <div class="art-meta">
-                                \${o.Año || ''} · \${o.Dimensiones || o.dimensiones || ''} · \${o.Técnica || o.Tecnica || ''}
-                            </div>
-                            <p class="art-description">${o.Descripción || o.Descripcion || ''}</p>
+                            <h3>${o.Titulo || o.Título}</h3>
+                            <div class="art-meta">${o.Año || ''} · \${o.Tamaño || ''}</div>
+                            <p class="art-description">${o.Descripcion || o.Descripción || ''}</p>
                             <div class="art-status-row">
                                 <span class="status-tag \${disp ? 'disponible' : 'vendida'}">${disp ? 'Disponible' : 'Vendida'}</span>
                                 <span class="price">${disp ? (o.Precio || '') : ''}</span>
@@ -166,7 +160,6 @@
                         </div>
                     </div>`;
             });
-
 
             container.innerHTML += `
                 <section class="section" id="${id}">
