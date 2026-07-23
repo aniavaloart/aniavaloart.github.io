@@ -147,15 +147,46 @@
             obras.forEach(o => {
                 const disp = (o.Disponible || "").trim().toUpperCase() === "SI";
                 cardsHTML += `
+                    function renderizar(data) {
+        const container = document.getElementById('contenedor-dinamico');
+        const nav = document.getElementById('nav-colecciones');
+        
+        container.innerHTML = '';
+        nav.innerHTML = '';
+
+        const colecciones = [...new Set(data.map(item => item.Coleccion || item.Colección))].filter(c => c);
+
+        colecciones.forEach(col => {
+            const id = col.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-');
+            nav.innerHTML += `<a href="#${id}">${col}</a>`;
+
+            const obras = data.filter(item => (item.Coleccion || item.Colección) === col);
+            let cardsHTML = '';
+
+            obras.forEach(o => {
+                // Comprobamos si está disponible (acepta SI o SÍ)
+                const dispVal = (o.Disponible || "").trim().toUpperCase();
+                const disp = dispVal === "SI" || dispVal === "SÍ";
+                
+                // Mapeo de columnas exactas de tu planilla
+                const titulo = o.Titulo || o.Título || 'Sin título';
+                const dimensiones = o.Dimensiones || o.dimensiones || '';
+                const tecnica = o.Tecnica || o.Técnica || '';
+                const precio = o.Precio || '';
+                const descripcion = o.Descripcion || o.Descripción || '';
+
+                cardsHTML += `
                     <div class="art-card">
                         <img src="${o.Imagen}" onerror="this.src='https://via.placeholder.com/500x700?text=Cargando...'">
                         <div class="art-info">
-                            <h3>${o.Titulo || o.Título}</h3>
-                            <div class="art-meta">${o.Año || ''} · \${o.Tamaño || ''}</div>
-                            <p class="art-description">${o.Descripcion || o.Descripción || ''}</p>
+                            <h3>${titulo}</h3>
+                            <div class="art-meta">
+                                \${o.Año || ''} \${o.Año ? '·' : ''} \${dimensiones} \${dimensiones ? '·' : ''} \${tecnica}
+                            </div>
+                            <p class="art-description">${descripcion}</p>
                             <div class="art-status-row">
                                 <span class="status-tag \${disp ? 'disponible' : 'vendida'}">${disp ? 'Disponible' : 'Vendida'}</span>
-                                <span class="price">${disp ? (o.Precio || '') : ''}</span>
+                                <span class="price">${disp ? precio : ''}</span>
                             </div>
                         </div>
                     </div>`;
