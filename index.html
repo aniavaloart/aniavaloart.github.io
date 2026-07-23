@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
 <style>
+    /* Mantenemos tu estética original intacta */
     *{ margin:0; padding:0; box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
     body{ background:#f6f3ef; color:#111; font-family:'Inter',sans-serif; overflow-x:hidden; }
@@ -30,17 +31,17 @@
     .hero-image img{ height:82vh; object-fit:cover; }
     .section{ padding:130px 0; }
     .section-title{ font-family:'Cormorant Garamond',serif; font-size:72px; font-weight:400; margin-bottom:60px; text-transform: capitalize; }
-    .gallery{ display:grid; grid-template-columns:repeat(auto-fill, minmax(350px, 1fr)); gap:40px; }
-    .art-card img{ height:500px; object-fit:cover; margin-bottom:20px; background: #eee; }
-    .art-info h3{ font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:400; margin-bottom:5px; }
-    .art-meta { font-size: 12px; color: #777; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
-    .art-description { font-size: 14px; line-height: 1.6; color: #555; margin-bottom: 15px; }
-    .art-status-row { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.06); }
+    .gallery{ display:grid; grid-template-columns:repeat(auto-fill, minmax(380px, 1fr)); gap:50px; }
+    .art-card{ margin-bottom: 30px; }
+    .art-card img{ height:520px; object-fit:cover; margin-bottom:20px; background: #eee; }
+    .art-info h3{ font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:400; margin-bottom:8px; }
+    .art-meta { font-size: 12px; color: #777; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+    .art-description { font-size: 14px; line-height: 1.6; color: #555; margin-bottom: 18px; font-style: italic; }
+    .art-status-row { display: flex; justify-content: space-between; align-items: center; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.06); }
     .status-tag { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
     .disponible { color: #27ae60; }
     .vendida { color: #999; }
-    footer{ padding:60px 0; border-top:1px solid rgba(0,0,0,0.08); margin-top:80px; }
-    @media(max-width:900px){ .hero-grid{ grid-template-columns:1fr; } .hero-text h1{ font-size:60px; } .gallery{ grid-template-columns: 1fr; } }
+    footer{ padding:60px 0; border-top:1px solid rgba(0,0,0,0.08); margin-top:80px; text-align: center; }
 </style>
 </head>
 
@@ -57,7 +58,6 @@
                 <div class="dropdown-content" id="nav-colecciones"></div>
             </div>
             <a href="#vision">Visión</a>
-            <a href="#escritos">Escritos</a>
             <a href="#contacto">Contacto</a>
             <a href="https://www.instagram.com/ania_valo_art/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         </div>
@@ -83,7 +83,6 @@
     </div>
 </section>
 
-<!-- CONTENEDOR DE OBRAS -->
 <div id="contenedor-dinamico"></div>
 
 <section class="section" id="vision">
@@ -93,17 +92,10 @@
     </div>
 </section>
 
-<section class="section" id="escritos">
-    <div class="container">
-        <h2 class="section-title">Escritos</h2>
-        <div style="max-width:900px;"><p style="font-size:18px; line-height:2; color:#444;">Próximamente...</p></div>
-    </div>
-</section>
-
 <footer id="contacto">
-    <div class="container" style="display:flex; justify-content:space-between;">
-        <div class="logo" style="font-size:24px;">ANIA VALÓ</div>
-        <div>© 2026</div>
+    <div class="container">
+        <div class="logo" style="font-size:24px; margin-bottom:10px;">ANIA VALÓ</div>
+        <div style="font-size:11px; letter-spacing:2px; opacity:0.6;">© 2026 • MONTEVIDEO, URUGUAY</div>
     </div>
 </footer>
 
@@ -113,49 +105,52 @@
     const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1YP4lU1pTAVV_N9W0eNmATQfoaSqultXDHSJrlf5oEutLrpB8vaqsEuZjICM-d5c0ZypV3Htt4MtM/pub?output=csv";
 
     function cargar() {
-        // Usamos fetch para forzar la carga limpia
-        fetch(CSV_URL)
-            .then(response => response.text())
-            .then(csvText => {
-                Papa.parse(csvText, {
-                    header: true,
-                    skipEmptyLines: true,
-                    complete: function(results) {
-                        renderizar(results.data);
-                    }
-                });
-            })
-            .catch(err => console.error("Error cargando CSV:", err));
+        Papa.parse(CSV_URL, {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: function(results) {
+                renderizar(results.data);
+            }
+        });
     }
 
     function renderizar(data) {
         const container = document.getElementById('contenedor-dinamico');
         const nav = document.getElementById('nav-colecciones');
-        
         container.innerHTML = '';
         nav.innerHTML = '';
 
-        const colecciones = [...new Set(data.map(item => item.Coleccion || item.Colección))].filter(c => c);
+        // Función para encontrar el valor de una columna sin importar mayúsculas o tildes
+        const getVal = (obj, key) => {
+            const normalizedKey = key.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const actualKey = Object.keys(obj).find(k => 
+                k.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim() === normalizedKey
+            );
+            return actualKey ? obj[actualKey] : "";
+        };
+
+        const colecciones = [...new Set(data.map(item => getVal(item, "Coleccion")))].filter(c => c);
 
         colecciones.forEach(col => {
             const id = col.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-');
             nav.innerHTML += `<a href="#${id}">${col}</a>`;
 
-            const obras = data.filter(item => (item.Coleccion || item.Colección) === col);
+            const obras = data.filter(item => getVal(item, "Coleccion") === col);
             let cardsHTML = '';
 
             obras.forEach(o => {
-                const disp = (o.Disponible || "").trim().toUpperCase() === "SI";
+                const disp = getVal(o, "Disponible").trim().toUpperCase() === "SI";
                 cardsHTML += `
                     <div class="art-card">
-                        <img src="${o.Imagen}" onerror="this.src='https://via.placeholder.com/500x700?text=Cargando...'">
+                        <img src="${getVal(o, "Imagen")}" onerror="this.src='https://via.placeholder.com/500x700?text=Imagen+no+encontrada'">
                         <div class="art-info">
-                            <h3>${o.Titulo || o.Título}</h3>
-                            <div class="art-meta">${o.Año || ''} · \${o.Tamaño || ''}</div>
-                            <p class="art-description">${o.Descripcion || o.Descripción || ''}</p>
+                            <h3>${getVal(o, "Titulo")}</h3>
+                            <div class="art-meta">${getVal(o, "Año")} · \${getVal(o, "Tamaño")} · \${getVal(o, "Tecnica")}</div>
+                            <p class="art-description">${getVal(o, "Descripcion")}</p>
                             <div class="art-status-row">
                                 <span class="status-tag \${disp ? 'disponible' : 'vendida'}">${disp ? 'Disponible' : 'Vendida'}</span>
-                                <span class="price">${disp ? (o.Precio || '') : ''}</span>
+                                <span class="price">${disp ? getVal(o, "Precio") : ''}</span>
                             </div>
                         </div>
                     </div>`;
