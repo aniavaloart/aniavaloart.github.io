@@ -36,31 +36,58 @@
         font-size: clamp(24px, 5vw, 42px); /* Tamaño fluido */
         letter-spacing: 2px; 
     }
-    .menu{ 
-        display:flex; 
-        gap:15px; 
-        align-items:center; 
-        flex-wrap: wrap; /* Los botones se acomodan en celular */
+      /* NAVEGACIÓN CORREGIDA */
+    .menu { 
+        display: flex; 
+        gap: 20px; 
+        align-items: center; /* Alineación vertical perfecta */
+        flex-wrap: wrap; 
         justify-content: center;
     }
-    .menu a{ 
-        font-size:10px; 
-        text-transform:uppercase; 
-        letter-spacing:1px; 
-        transition:.3s; 
-        cursor:pointer; 
+
+    .menu a, .dropdown > a { 
+        font-size: 13px; /* Letra un poco más grande para que se vea bien */
+        text-transform: uppercase; 
+        letter-spacing: 1px; 
+        transition: .3s; 
+        cursor: pointer; 
         white-space: nowrap;
+        display: flex;
+        align-items: center;
     }
     
-    .dropdown { position: relative; display: inline-block; }
-    .dropdown-content { 
-        display: none; position: absolute; 
-        background-color: #f6f3ef; min-width: 160px; 
-        box-shadow: 0px 10px 20px rgba(0,0,0,0.05); 
-        z-index: 1000; top: 100%; left: 0; 
-        padding: 10px 0; border: 1px solid rgba(0,0,0,0.05); 
+    /* Ajuste específico para el icono de colecciones */
+    .dropdown > a i {
+        margin-left: 5px;
+        font-size: 9px;
+        vertical-align: middle;
     }
-    .dropdown-content a { display: block; padding: 10px 15px; font-size: 10px !important; }
+
+    .dropdown { 
+        display: flex; 
+        align-items: center; /* Alinea el contenedor del dropdown */
+    }
+
+    .dropdown-content { 
+        display: none; 
+        position: absolute; 
+        background-color: #f6f3ef; 
+        min-width: 160px; 
+        box-shadow: 0px 10px 20px rgba(0,0,0,0.05); 
+        z-index: 1000; 
+        top: 100%; 
+        left: 0; 
+        padding: 10px 0; 
+        border: 1px solid rgba(0,0,0,0.05); 
+    }
+
+    /* Tamaño de letra para el menú desplegable */
+    .dropdown-content a { 
+        display: block; 
+        padding: 10px 15px; 
+        font-size: 11px !important; 
+    }
+
     .dropdown:hover .dropdown-content { display: block; }
 
     /* HERO AJUSTADO */
