@@ -151,7 +151,7 @@
                         <img src="${o.Imagen}" onerror="this.src='https://via.placeholder.com/500x700?text=Cargando...'">
                         <div class="art-info">
                             <h3>${o.Titulo || o.Título}</h3>
-                            <div class="art-meta">${o.Año || ''} · \${o.Tamaño || ''}</div>
+                            <div class="art-meta">${o.Año || ''} · ${o.Tamaño || ''}</div>
                             <p class="art-description">${o.Descripcion || o.Descripción || ''}</p>
                             <div class="art-status-row">
                                 <span class="status-tag \${disp ? 'disponible' : 'vendida'}">${disp ? 'Disponible' : 'Vendida'}</span>
