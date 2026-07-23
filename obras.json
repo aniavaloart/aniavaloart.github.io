@@ -1,6 +1,7 @@
 [
   {
     "titulo": "Umbral de Silencio",
+    "coleccion": "puentes",
     "imagen": "https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=800",
     "tecnica": "Óleo sobre lino",
     "año": "2026",
@@ -11,6 +12,7 @@
   },
   {
     "titulo": "Jardín Etéreo",
+    "coleccion": "jardines",
     "imagen": "https://images.unsplash.com/photo-1549490349-8643362247b5?w=800",
     "tecnica": "Acrílico y texturas",
     "año": "2025",
@@ -18,5 +20,16 @@
     "estado": "Vendido",
     "precio": "—",
     "descripcion": "Fragmentos de naturaleza reinterpretados desde la memoria."
+  },
+  {
+    "titulo": "Reflejos de Luz",
+    "coleccion": "jardines",
+    "imagen": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800",
+    "tecnica": "Técnica mixta",
+    "año": "2026",
+    "dimensiones": "100 x 100 cm",
+    "estado": "Disponible",
+    "precio": "$950",
+    "descripcion": "Estudio sobre la luz filtrada en espacios orgánicos."
   }
 ]
