@@ -63,12 +63,14 @@
         vertical-align: middle;
     }
 
-    .dropdown { 
-        display: flex; 
-        align-items: center; /* Alinea el contenedor del dropdown */
+     .dropdown { 
+        position: relative; 
+        display: inline-flex; 
+        align-items: center;
     }
 
-    .dropdown-content { 
+
+      .dropdown-content { 
         display: none; 
         position: absolute; 
         background-color: #f6f3ef; 
@@ -76,10 +78,11 @@
         box-shadow: 0px 10px 20px rgba(0,0,0,0.05); 
         z-index: 1000; 
         top: 100%; 
-        left: 0; 
+        left: 0; /* Esto es lo que lo alinea a la izquierda de la palabra */
         padding: 10px 0; 
         border: 1px solid rgba(0,0,0,0.05); 
     }
+
 
     /* Tamaño de letra para el menú desplegable */
     .dropdown-content a { 
