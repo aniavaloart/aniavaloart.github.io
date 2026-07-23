@@ -90,6 +90,43 @@ nav{
     opacity:.5;
 }
 
+/* DROPDOWN STYLES */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f6f3ef;
+    min-width: 200px;
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.05);
+    z-index: 1000;
+    top: 100%;
+    left: 0;
+    padding: 15px 0;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 20px;
+    font-size: 11px !important; /* Un poco más pequeño para el submenú */
+    color: #444;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(0,0,0,0.02);
+    opacity: 1 !important;
+    color: #000;
+}
+
+/* Mostrar al hacer hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
 .instagram{
     font-size:20px;
 }
@@ -328,6 +365,11 @@ footer{
     font-size:10px;
 }
 
+.dropdown-content {
+    right: 0;
+    left: auto;
+}
+
 .hero-text h1{
     font-size:52px;
 }
@@ -367,7 +409,14 @@ ANIA VALÓ
 
 <a href="#biografia">Biografía</a>
 
-<a href="#colecciones">Colecciones</a>
+<!-- DROPDOWN COLECCIONES -->
+<div class="dropdown">
+    <a href="#colecciones">Colecciones <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 5px;"></i></a>
+    <div class="dropdown-content">
+        <a href="#puentes">Puentes Abstractos</a>
+        <a href="#jardines">Jardines</a>
+    </div>
+</div>
 
 <a href="#vision">Visión</a>
 
@@ -375,7 +424,7 @@ ANIA VALÓ
 
 <a href="#contacto">Contacto</a>
 
-<a href="https://https://www.instagram.com/ania_valo_art/" target="_blank" class="instagram">
+<a href="https://www.instagram.com/ania_valo_art/" target="_blank" class="instagram">
 <i class="fa-brands fa-instagram"></i>
 </a>
 
@@ -384,6 +433,8 @@ ANIA VALÓ
 </div>
 
 </nav>
+
+<!-- RESTO DEL CONTENIDO IGUAL... -->
 
 <!-- HOME -->
 
@@ -479,8 +530,6 @@ Puentes Abstractos
 </h2>
 
 <div class="gallery">
-
-<!-- 10 obras -->
 
 <div class="art-card">
 <img src="https://picsum.photos/500/700?random=1">
@@ -695,14 +744,6 @@ proponiendo una estética silenciosa pero intensa.
 
 <!-- ESCRITOS -->
 
-<!-- REEMPLAZA ÚNICAMENTE LA SECCIÓN DE "ESCRITOS" POR ESTA -->
-
-<!-- ESCRITOS -->
-
-<!-- REEMPLAZA TODA LA SECCIÓN "ESCRITOS" POR ESTA -->
-
-<!-- ESCRITOS -->
-
 <section class="section" id="escritos">
 
 <div class="container">
@@ -713,154 +754,44 @@ Escritos
 
 <div class="gallery">
 
-<!-- ESCRITO 1 -->
-
 <a href="escrito1.html" class="art-card">
-
 <img src="https://picsum.photos/600/800?random=31">
-
 <div class="art-info">
 <h3>La materia y el silencio</h3>
-<p>
-Reflexión sobre textura, vacío y contemplación.
-</p>
+<p>Reflexión sobre textura, vacío y contemplación.</p>
 </div>
-
 </a>
-
-<!-- ESCRITO 2 -->
 
 <a href="escrito2.html" class="art-card">
-
 <img src="https://picsum.photos/600/800?random=32">
-
 <div class="art-info">
 <h3>Contemplar</h3>
-<p>
-La pausa visual en la era digital.
-</p>
+<p>La pausa visual en la era digital.</p>
 </div>
-
 </a>
-
-<!-- ESCRITO 3 -->
 
 <a href="escrito3.html" class="art-card">
-
 <img src="https://picsum.photos/600/800?random=33">
-
 <div class="art-info">
 <h3>Paisajes internos</h3>
-<p>
-El paisaje emocional como lenguaje.
-</p>
+<p>El paisaje emocional como lenguaje.</p>
 </div>
-
 </a>
-
-<!-- ESCRITO 4 -->
 
 <a href="escrito4.html" class="art-card">
-
 <img src="https://picsum.photos/600/800?random=34">
-
 <div class="art-info">
 <h3>El vacío</h3>
-<p>
-Espacios silenciosos y percepción.
-</p>
+<p>Espacios silenciosos y percepción.</p>
 </div>
-
 </a>
-
-<!-- ESCRITO 5 -->
 
 <a href="escrito5.html" class="art-card">
-
 <img src="https://picsum.photos/600/800?random=35">
-
 <div class="art-info">
 <h3>Tiempo lento</h3>
-<p>
-La experiencia artística y el tiempo.
-</p>
+<p>La experiencia artística y el tiempo.</p>
 </div>
-
-</a>
-
-<!-- ESCRITO 6 -->
-
-<a href="escrito6.html" class="art-card">
-
-<img src="https://picsum.photos/600/800?random=36">
-
-<div class="art-info">
-<h3>Arquitecturas emocionales</h3>
-<p>
-Construcción simbólica del espacio.
-</p>
-</div>
-
-</a>
-
-<!-- ESCRITO 7 -->
-
-<a href="escrito7.html" class="art-card">
-
-<img src="https://picsum.photos/600/800?random=37">
-
-<div class="art-info">
-<h3>Lo invisible</h3>
-<p>
-La percepción más allá de la forma.
-</p>
-</div>
-
-</a>
-
-<!-- ESCRITO 8 -->
-
-<a href="escrito8.html" class="art-card">
-
-<img src="https://picsum.photos/600/800?random=38">
-
-<div class="art-info">
-<h3>Naturaleza abstracta</h3>
-<p>
-Organicidad y abstracción contemporánea.
-</p>
-</div>
-
-</a>
-
-<!-- ESCRITO 9 -->
-
-<a href="escrito9.html" class="art-card">
-
-<img src="https://picsum.photos/600/800?random=39">
-
-<div class="art-info">
-<h3>Presencia</h3>
-<p>
-La atención como experiencia estética.
-</p>
-</div>
-
-</a>
-
-<!-- ESCRITO 10 -->
-
-<a href="escrito10.html" class="art-card">
-
-<img src="https://picsum.photos/600/800?random=40">
-
-<div class="art-info">
-<h3>Materia viva</h3>
-<p>
-La superficie como memoria física.
-</p>
-</div>
-
 </a>
 
 </div>
