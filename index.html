@@ -3,151 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ania Való | Galería</title>
+    <title>Ania Való | Arte y Pensamiento</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { background:#f6f3ef; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color:#111; }
+        html { scroll-behavior: smooth; }
+        body { background:#f6f3ef; font-family:'Inter', sans-serif; color:#111; line-height: 1.6; }
         
         /* NAVEGACIÓN */
-        nav { position:fixed; top:0; width:100%; background:white; padding:20px 0; z-index:1000; border-bottom:1px solid #eee; }
+        nav { position: fixed; top:0; width:100%; background:rgba(246,243,239,0.95); backdrop-filter:blur(10px); z-index:1000; padding: 20px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
         .nav-inner { width:90%; max-width:1400px; margin:auto; display:flex; justify-content:space-between; align-items:center; }
-        .logo { font-size:22px; letter-spacing:4px; font-weight: 300; }
+        .logo { font-family:'Cormorant Garamond', serif; font-size:28px; letter-spacing:2px; }
         
-        .menu { display:flex; gap:25px; list-style:none; }
-        .dropdown { position:relative; }
-        .dropdown-btn { font-size:11px; text-transform:uppercase; letter-spacing:1px; cursor:pointer; }
-        .dropdown-content { 
-            display:none; position:absolute; background:white; min-width:180px; 
-            border:1px solid #eee; top:20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-        }
-        .dropdown:hover .dropdown-content { display:block; }
-        .dropdown-content a { display:block; padding:12px 20px; text-decoration:none; color:#444; font-size:12px; border-bottom:1px solid #f9f9f9; }
-        .dropdown-content a:hover { background:#f6f3ef; }
+        .menu { display:flex; gap:25px; list-style:none; align-items: center; }
+        .menu a { text-decoration:none; color:#111; font-size:11px; text-transform:uppercase; letter-spacing:1px; cursor:pointer; }
 
-        /* CONTENEDOR DE GALERÍAS */
-        .container { width:90%; max-width:1400px; margin:140px auto; }
-        
-        .coleccion-bloque { margin-bottom: 100px; }
-        .titulo-coleccion { 
-            font-size:32px; font-weight: 300; text-transform: capitalize;
-            margin-bottom:40px; border-bottom:1px solid #111; padding-bottom:15px; 
+        /* DROPDOWN */
+        .dropdown { position: relative; }
+        .dropdown-content { 
+            display: none; position: absolute; top: 100%; left: 0; 
+            background: #f6f3ef; min-width: 180px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
+            padding: 10px 0; border: 1px solid #ddd; margin-top: 10px;
         }
-        
-        /* CUADRÍCULA: 4 en PC, 2 en Móvil */
-        .galeria-grid { 
-            display:grid; 
-            grid-template-columns: repeat(4, 1fr); 
-            gap:30px; 
-        }
+        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content a { display: block; padding: 10px 20px; border-bottom: 1px solid rgba(0,0,0,0.03); }
+
+        /* HERO SECCIÓN */
+        .hero { min-height:100vh; display:flex; align-items:center; padding-top:80px; }
+        .hero-grid { display:grid; grid-template-columns: 1fr 1fr; gap:50px; width:90%; max-width:1400px; margin:auto; align-items:center; }
+        .hero-text h1 { font-family:'Cormorant Garamond', serif; font-size:clamp(40px, 6vw, 80px); line-height:1.1; margin-bottom:20px; }
+        .hero-image img { width:100%; height:80vh; object-fit:cover; }
+
+        /* SECCIONES FIJAS */
+        .section { padding:100px 0; width:90%; max-width:1400px; margin:auto; }
+        .section-title { font-family:'Cormorant Garamond', serif; font-size:42px; margin-bottom:40px; border-bottom:1px solid #111; padding-bottom:10px; text-transform: capitalize; }
+        .bio-text { max-width:800px; font-size:18px; color:#444; }
+
+        /* GRID DE GALERÍA (4 PC / 2 MÓVIL) */
+        .galeria-grid { display:grid; grid-template-columns: repeat(4, 1fr); gap:30px; }
         @media (max-width: 1000px) { .galeria-grid { grid-template-columns: repeat(2, 1fr); gap:15px; } }
 
         /* TARJETA DE OBRA */
-        .obra-card { background:white; padding:15px; transition:0.4s ease; cursor: pointer; }
-        .obra-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .obra-card img { width:100%; aspect-ratio: 4/5; object-fit: cover; margin-bottom:15px; }
+        .obra-card { background:white; padding:15px; transition:0.4s ease; cursor: zoom-in; }
+        .obra-card img { width:100%; aspect-ratio:4/5; object-fit:cover; margin-bottom:15px; }
         
-        /* ZOOM AL TOCAR */
-        .obra-card:active { transform: scale(0.98); }
+        /* ZOOM (PRIMER PLANO) */
+        .obra-card.active { 
+            position:fixed; top:50%; left:50%; transform:translate(-50%, -50%) scale(1.1); 
+            z-index:2000; width:450px; max-width:90%; box-shadow:0 0 100px rgba(0,0,0,0.4); 
+        }
+        .overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1500; }
+        .overlay.active { display:block; }
 
-        .obra-info h3 { font-size:18px; font-weight:500; margin-bottom:10px; }
-        .obra-info p { font-size:12px; color:#666; margin-bottom:3px; }
-        .tag-estado { display:inline-block; padding:4px 10px; font-size:10px; text-transform:uppercase; margin-top:12px; letter-spacing:1px; }
+        .tag-estado { display:inline-block; padding:3px 8px; font-size:10px; text-transform:uppercase; margin-top:10px; font-weight:bold; }
         .disponible { background:#e8f5e9; color:#2e7d32; }
         .vendido { background:#f5f5f5; color:#999; }
-        .obra-precio { font-weight:600; margin-top:10px; font-size:16px; }
     </style>
 </head>
 <body>
+
+<div class="overlay" id="overlay"></div>
 
 <nav>
     <div class="nav-inner">
         <div class="logo">ANIA VALÓ</div>
         <ul class="menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#biografia">Biografía</a></li>
             <li class="dropdown">
-                <span class="dropdown-btn">COLECCIONES ▼</span>
-                <div class="dropdown-content" id="menu-dropdown">
-                    <!-- El script pondrá los enlaces aquí -->
+                <a>Colecciones ▼</a>
+                <div class="dropdown-content" id="menu-colecciones">
+                    <!-- Se llena solo -->
                 </div>
             </li>
-            <li><a href="#contacto" style="text-decoration:none; color:black; font-size:11px; letter-spacing:1px;">CONTACTO</a></li>
+            <li><a href="#vision">Visión</a></li>
+            <li><a href="#contacto">Contacto</a></li>
         </ul>
     </div>
 </nav>
 
-<div class="container" id="galeria-total">
-    <!-- El script creará todo aquí dentro -->
-</div>
+<!-- PORTADA -->
+<section class="hero" id="home">
+    <div class="hero-grid">
+        <div class="hero-text">
+            <h1>Arte, pensamiento y sensibilidad humana.</h1>
+            <p>"La pintura representa la parte más visual y estética de mi universo creativo..."</p>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1200" alt="Ania Való Art">
+        </div>
+    </div>
+</section>
 
-<script>
-    // Cargamos el JSON
-    fetch('obras.json?v=' + Math.random())
-    .then(res => res.json())
-    .then(data => {
-        const contenedorPrincipal = document.getElementById('galeria-total');
-        const menuDropdown = document.getElementById('menu-dropdown');
-        
-        // 1. Agrupar obras por colección automáticamente
-        const grupos = {};
-        data.forEach(obra => {
-            if (!grupos[obra.coleccion]) {
-                grupos[obra.coleccion] = [];
-            }
-            grupos[obra.coleccion].push(obra);
-        });
-
-        // 2. Por cada grupo, crear la sección en la página
-        for (const nombreColeccion in grupos) {
-            // Crear el bloque de la sección
-            const seccion = document.createElement('div');
-            seccion.className = 'coleccion-bloque';
-            seccion.id = nombreColeccion;
-
-            // Crear el título
-            const titulo = document.createElement('h2');
-            titulo.className = 'titulo-coleccion';
-            titulo.innerText = nombreColeccion;
-            seccion.appendChild(titulo);
-
-            // Crear la cuadrícula (Grid)
-            const grid = document.createElement('div');
-            grid.className = 'galeria-grid';
-
-            // Meter las obras en la cuadrícula
-            grupos[nombreColeccion].forEach(obra => {
-                const sClass = obra.estado.toLowerCase() === 'disponible' ? 'disponible' : 'vendido';
-                const precioHTML = obra.estado.toLowerCase() === 'disponible' ? `<div class="obra-precio">${obra.precio}</div>` : '';
-                
-                grid.innerHTML += `
-                    <div class="obra-card">
-                        <img src="${obra.imagen}" alt="${obra.titulo}">
-                        <div class="obra-info">
-                            <h3>${obra.titulo}</h3>
-                            <p><strong>Técnica:</strong> \${obra.tecnica}</p>
-                            <p><strong>Medidas:</strong> \${obra.dimensiones}</p>
-                            <p><strong>Año:</strong> \${obra.año}</p>
-                            <p style="font-style:italic; margin-top:8px; color:#444;">${obra.descripcion}</p>
-                            <span class="tag-estado \${sClass}">${obra.estado}</span>
-                            \${precioHTML}
-                        </div>
-                    </div>
-                `;
-            });
-
-            seccion.appendChild(grid);
-            contenedorPrincipal.appendChild(seccion);
-
-            // 3. Agregar el enlace al menú de arriba automáticamente
-            const link = document.createElement('a');
-            link.href = "#" + nombreColeccion;
-            link.innerText = nombreColeccion.toUpperCase();
-            menuDropdown.appendChild(link);
-        }
-    })
-    .catch(err => {
-        document.getElementById('galeria-total').innerHTML = "Error cargando las obras. Revisa el archivo obras.json";
-        console.error(err);
-    });
-</script>
-
-</body>
-</html>
+<!-- BIOGRAFÍA -->
+<section class="section" id="biografia">
+    <h2 class="section-title">Biografía</h2>
+    <div class="bio-text">
+        <p>Ania Való es una artista multidisciplinaria uruguaya. Su obra nace del cruce entre el arte, el pensamiento y la sensibilidad humana, explorando texturas y silencios.</p>
