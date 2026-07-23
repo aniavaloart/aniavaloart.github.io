@@ -437,6 +437,44 @@
         });
     });
 </script>
+<script>
+    // 1. Le pedimos a la web que lea el archivo JSON
+    fetch('obras.json')
+        .then(response => response.json())
+        .then(data => {
+            // 2. Buscamos el lugar donde queremos poner las fotos
+            const contenedor = document.getElementById('galeria-puentes');
+            
+            // 3. Por cada obra en el archivo, creamos una tarjeta
+            data.forEach(obra => {
+                const statusClass = obra.estado.toLowerCase() === 'disponible' ? 'status-disponible' : 'status-vendido';
+                
+                // Si está vendida, no mostramos el precio
+                const precioHTML = (obra.estado.toLowerCase() === 'disponible') 
+                    ? `<span class="art-price">${obra.precio}</span>` 
+                    : '';
+
+                const card = `
+                    <div class="art-card">
+                        <img src="${obra.imagen}" alt="${obra.titulo}">
+                        <div class="art-info">
+                            <h3>${obra.titulo}</h3>
+                            <div class="meta">
+                                \${obra.tecnica} <br>
+                                \${obra.dimensiones} · \${obra.año}
+                            </div>
+                            <p style="font-size: 14px; color: #555; font-style: italic;">${obra.descripcion}</p>
+                            <span class="status-tag \${statusClass}">${obra.estado}</span>
+                            \${precioHTML}
+                        </div>
+                    </div>
+                `;
+                // 4. Lo metemos en la web
+                contenedor.innerHTML += card;
+            });
+        })
+        .catch(error => console.error('Error cargando las obras:', error));
+</script>
 
 </body>
 </html>
