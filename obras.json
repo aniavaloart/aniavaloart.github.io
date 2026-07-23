@@ -1,1 +1,23 @@
 
+[
+  {
+    "titulo": "Umbral",
+    "imagen": "https://picsum.photos/500/700?random=1",
+    "tecnica": "Acrílico sobre tela",
+    "año": "2026",
+    "dimensiones": "100 x 120 cm",
+    "estado": "Disponible",
+    "precio": "$850",
+    "descripcion": "Una exploración sobre el paso del tiempo."
+  },
+  {
+    "titulo": "Materia",
+    "imagen": "https://picsum.photos/500/700?random=2",
+    "tecnica": "Óleo y técnica mixta",
+    "año": "2025",
+    "dimensiones": "80 x 80 cm",
+    "estado": "Vendido",
+    "precio": "—",
+    "descripcion": "Texturas orgánicas inspiradas en la naturaleza."
+  }
+]
