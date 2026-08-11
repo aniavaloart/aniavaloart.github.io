@@ -1,3 +1,46 @@
+Skip to content
+aniavaloart
+aniavaloart.github.io
+Repository navigation
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security and quality
+Insights
+Settings
+Commit 06fa1cc
+aniavaloart
+aniavaloart
+authored
+11 minutes ago
+·
+·
+Verified
+Update index.html
+main
+1 parent 
+28be328
+ commit 
+06fa1cc
+1 file changed
+
++2
+-2
+Lines changed: 2 additions & 2 deletions
+File tree
+Filter files…
+index.html
+Search within code
+ 
+‎index.html‎
++2
+-2
+Lines changed: 2 additions & 2 deletions
+Original file line number	Diff line number	Diff line change
+@@ -1,434 +1,434 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,7 +57,7 @@
     img{ width:100%; display:block; }
     a{ text-decoration:none; color:inherit; }
     .container{ width:90%; max-width:1450px; margin:auto; }
-    
+
     /* NAVEGACIÓN RESPONSIVA */
     nav{ 
         position:fixed; top:0; left:0; width:100%; 
@@ -166,6 +209,8 @@
 
      .art-status-row { 
         display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
          
        flex-direction: column; align-items: flex-start;
         padding-bottom: 12px; /* Espacio antes de la línea */
@@ -201,7 +246,7 @@
         <div class="menu">
             <a href="#home">Home</a>
             <a href="#vision">Visión</a>
-            
+
             <div class="dropdown">
                 <a href="javascript:void(0)" style="cursor: pointer;">Colecciones <i class="fa-solid fa-chevron-down" style="font-size:10px"></i></a>
 
@@ -247,7 +292,7 @@
         <div style="max-width:900px;"><p style="font-size:18px; line-height:2; color:#444;"><section id="biografia" class="biografia">
 
   <div class="bio-header">
-   
+
   </div>
 
   <div class="bio-content">
@@ -350,65 +395,17 @@
         </div>
     </div>
 </section>
-```html
 <footer id="contacto">
-  <div class="container footer-content">
-    
+  <div class="container" style="display:flex; justify-content:space-between; align-items: flex-start; font-family: 'Cormorant Garamond', serif;">
     <div class="logo-container">
-      <div class="footer-logo">ANIA VALÓ</div>
-      <div class="footer-legal">
-        Prohibida la utilización o reproducción parcial o total de cualquiera de las obras. Todos los derechos reservados.
-      </div>
+        <!-- Eliminamos font-weight: bold y aplicamos la tipografía del título -->
+        <div style="font-size:24px;">ANIA VALÓ</div>
+        <!-- El aviso legal se mantiene en Inter (o la fuente de lectura) para que sea legible, a 18px -->
+        <div style="font-size:12px; font-family: 'Inter', sans-serif;">Prohibida la utilización o reproducción parcial o total de cualquiera de las obras. Todos los derechos reservados.</div>
     </div>
-
-    <div class="footer-year">© 2026</div>
-
-  </div>
+   <div style="font-size:24px;">© 2026</div>
+</div>
 </footer>
-
-<style>
-  .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    font-family: 'Cormorant Garamond', serif;
-  }
-
-  .footer-logo {
-    font-size: 24px;
-  }
-
-  .footer-legal {
-    font-size: 12px;
-    font-family: 'Inter', sans-serif;
-  }
-
-  .footer-year {
-    font-size: 24px;
-  }
-
-  @media (max-width: 600px) {
-    .footer-content {
-      flex-direction: column;
-      gap: 22px;
-    }
-
-    .logo-container {
-      width: 100%;
-    }
-
-    .footer-legal {
-      margin-top: 8px;
-      line-height: 1.6;
-    }
-
-    .footer-year {
-      margin-top: 4px;
-    }
-  }
-</style>
-```
-
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
@@ -435,7 +432,7 @@
     function renderizar(data) {
         const container = document.getElementById('contenedor-dinamico');
         const nav = document.getElementById('nav-colecciones');
-        
+
         container.innerHTML = '';
         nav.innerHTML = '';
 
@@ -455,7 +452,8 @@
                         <img src="${o.Imagen}" onerror="this.src='https://via.placeholder.com/500x700?text=Cargando...'">
                         <div class="art-info">
                             <h3>${o.Titulo || o.Título}</h3>
-                           <div class="art-meta">${o.Año || ''} · \${o.Dimensión || ''} · \${o.Técnica || ''}</div>
+                            <div class="art-meta">${o.Año || ''} · ${o.Dimensión || ''}</div>
+                             <div class="art-meta">${o.Técnica || ''} </div>
                             <p class="art-description">${o.Descripcion || o.Descripción || ''}</p>
                             <div class="art-status-row">
                                 <span class="status-tag \${disp ? 'disponible' : 'vendida'}">${disp ? 'Disponible' : 'Vendida'}</span>
@@ -479,3 +477,10 @@
 </script>
 </body>
 </html>
+0 commit comments
+Comments
+0
+ (0)
+Comment
+You're not receiving notifications from this thread.
+
