@@ -350,17 +350,65 @@
         </div>
     </div>
 </section>
+```html
 <footer id="contacto">
-  <div class="container" style="display:flex; justify-content:space-between; align-items: flex-start; font-family: 'Cormorant Garamond', serif;">
+  <div class="container footer-content">
+    
     <div class="logo-container">
-        <!-- Eliminamos font-weight: bold y aplicamos la tipografía del título -->
-        <div style="font-size:24px;">ANIA VALÓ</div>
-        <!-- El aviso legal se mantiene en Inter (o la fuente de lectura) para que sea legible, a 18px -->
-        <div style="font-size:12px; font-family: 'Inter', sans-serif;">Prohibida la utilización o reproducción parcial o total de cualquiera de las obras. Todos los derechos reservados.</div>
+      <div class="footer-logo">ANIA VALÓ</div>
+      <div class="footer-legal">
+        Prohibida la utilización o reproducción parcial o total de cualquiera de las obras. Todos los derechos reservados.
+      </div>
     </div>
-   <div style="font-size:24px;">© 2026</div>
-</div>
+
+    <div class="footer-year">© 2026</div>
+
+  </div>
 </footer>
+
+<style>
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .footer-logo {
+    font-size: 24px;
+  }
+
+  .footer-legal {
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .footer-year {
+    font-size: 24px;
+  }
+
+  @media (max-width: 600px) {
+    .footer-content {
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .logo-container {
+      width: 100%;
+    }
+
+    .footer-legal {
+      margin-top: 8px;
+      line-height: 1.6;
+    }
+
+    .footer-year {
+      margin-top: 4px;
+    }
+  }
+</style>
+```
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
@@ -407,8 +455,7 @@
                         <img src="${o.Imagen}" onerror="this.src='https://via.placeholder.com/500x700?text=Cargando...'">
                         <div class="art-info">
                             <h3>${o.Titulo || o.Título}</h3>
-                            <div class="art-meta">${o.Año || ''} · ${o.Dimensión || ''}</div>
-                             <div class="art-meta">${o.Técnica || ''} </div>
+                           <div class="art-meta">${o.Año || ''} · \${o.Dimensión || ''} · \${o.Técnica || ''}</div>
                             <p class="art-description">${o.Descripcion || o.Descripción || ''}</p>
                             <div class="art-status-row">
                                 <span class="status-tag \${disp ? 'disponible' : 'vendida'}">${disp ? 'Disponible' : 'Vendida'}</span>
