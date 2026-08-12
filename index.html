@@ -434,16 +434,14 @@ const reprod = reprodKey ? o[reprodKey].trim() : ''; // Obtén el valor tal como
 
 let statusRow = '<div class="art-status-row">';
 statusRow += '<span class="status-tag ' + statusClass + '">' + statusText + '</span>';
-statusRow += '<div style="margin: 4px 0;"></div>'; // Espaciado
+statusRow += '<div style="margin: 4px 0;"></div>'; // Ajusta el valor según el espaciado entre Año y Acrílico
 
-// Añade un contenedor flex para "Reproducciones" y "Precio"
-statusRow += '<div style="display: flex; flex-wrap: wrap; align-items: center;">';
+if (precio) statusRow += '<span class="price">' + precio + ' <span class="pesos-uruguayos">pesos uruguayos</span></span><br><br>';
 
-if (reprod) {
-    statusRow += '<span class="status-tag" style="color: #000; font-weight: bold; margin-right: 10px;">Reproducciones:</span>' +
-        (reprod === "0/10" ? '<span class="status-tag" style="color: #000; font-weight:700;">' + reprod + ' disponibles</span>' :
-        '<span class="status-tag" style="color: green; font-weight:700;">' + reprod + ' disponibles</span>');
-}
+statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Reproducciones:</span> ' +
+    (reprod === "0/10" ? '<span class="status-tag" style="color: #000; font-weight:700;">' + reprod + ' disponibles</span>' :
+    '<span class="status-tag" style="color: green; font-weight:700;">' + reprod + ' disponibles</span>');
+
 
 if (precio) {
     statusRow += '<span class="price" style="margin-left: 10px; color: #444;">' + precio + ' <span class="pesos-uruguayos">pesos uruguayos</span></span>';
