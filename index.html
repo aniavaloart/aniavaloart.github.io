@@ -403,33 +403,33 @@
             const obras = data.filter(item => (item.Coleccion || item.Colección) === col);
             let cardsHTML = '';
 
-           obras.forEach(o => {
-  const dispKey = Object.keys(o).find(k => k.toLowerCase().includes('disponible') && k.toLowerCase().includes('original')) || '';
-const disp = dispKey ? (o[dispKey] || "").trim().toUpperCase() === "SI" : false;
+obras.forEach(o => {
+    const dispKey = Object.keys(o).find(k => k.toLowerCase().includes('disponible') && k.toLowerCase().includes('original')) || '';
+    const disp = dispKey ? (o[dispKey] || "").trim().toUpperCase() === "SI" : false;
 
-    const statusClass = disp ? 'disponible' : 'vendida';
-    const statusText = disp ? 'Original disponible' : 'Original no disponible';
-    const precio = disp ? (o.Precio || '') : '';
     const reprodKey = Object.keys(o).find(k => k.toLowerCase().includes('reproduc')) || '';
     const reprod = reprodKey ? (o[reprodKey] || '').trim() : '';
 
+    const statusText = disp
+        ? '<strong>Original disponible</strong>'
+        : '<strong><span style="color:red;">Original vendido</span></strong>';
+
     let statusRow = '<div class="art-status-row">';
-    statusRow += '<span class="status-tag ' + statusClass + '">' + statusText + '</span>';
-    if (precio) statusRow += '<span class="price">' + precio + '</span>';
+    statusRow += '<span class="status-tag">' + statusText + '</span>';
     statusRow += '<span class="status-tag disponible">Reproducciones: ' + (reprod ? reprod + ' disponibles' : '—') + '</span>';
     statusRow += '</div>';
 
     cardsHTML += '<div class="art-card">'
         + '<img src="' + o.Imagen + '" onerror="this.src=\'https://via.placeholder.com/500x700?text=Cargando...\'">'
         + '<div class="art-info">'
-       + '<h3>' + (o.Titulo || o.Título || '') + (function(){ const k = Object.keys(o).find(k => k.toLowerCase().trim() === 'nombre'); return (k && o[k]) ? ' | "' + o[k] + '"' : ''; })() + '</h3>'
-
-
+        + '<h3>' + (o.Titulo || o.Título || '') + (function(){ const k = Object.keys(o).find(k => k.toLowerCase().trim() === 'nombre'); return (k && o[k]) ? ' | "' + o[k] + '"' : ''; })() + '</h3>'
         + '<div class="art-meta">' + (o.Año || '') + ' · ' + (o.Dimensión || '') + '</div>'
         + '<div class="art-meta">' + (o.Técnica || '') + '</div>'
         + '<p class="art-description">' + (o.Descripcion || o.Descripción || '') + '</p>'
         + statusRow
         + '</div></div>';
+});
+
 });
 
 
