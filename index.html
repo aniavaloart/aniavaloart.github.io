@@ -198,6 +198,12 @@
     font-family: 'Inter', sans-serif; /* Asegúrate de que sea la misma fuente */
     font-weight: 400; /* Ajusta el peso de la fuente si es necesario */
 }
+.price {
+    font-size: 14px; /* Tamaño de fuente para los precios */
+}
+.pesos-uruguayos {
+    font-size: 12px; /* Dos puntos más pequeño que el tamaño de los precios */
+}
 
 </style>
 
@@ -428,7 +434,8 @@
 
     let statusRow = '<div class="art-status-row">';
     statusRow += '<span class="status-tag ' + statusClass + '">' + statusText + '</span>';
-    if (precio) statusRow += '<span class="price">' + precio + '</span>';
+  if (precio) statusRow += '<span class="price">' + precio + ' <span class="pesos-uruguayos">pesos uruguayos</span></span>';
+
     const reprodColor = (reprod && reprod.trim().charAt(0) !== '0') ? 'class="status-tag disponible"' : 'class="status-tag" style="color:#111; font-weight:700;"';
 statusRow += '<span ' + reprodColor + '>Reproducciones: ' + (reprod ? reprod + ' disponibles' : '—') + '</span>';
 
