@@ -429,19 +429,19 @@
    const statusText = disp ? 'Original disponible' : '<strong><span style="color:red;">Original vendido</span></strong>';
 
     const precio = disp ? (o.Precio || '') : '';
-    const reprodKey = Object.keys(o).find(k => k.toLowerCase().includes('reproduc')) || '';
-    const reprod = reprodKey ? (o[reprodKey] || '').trim() : '';
+ const reprodKey = Object.keys(o).find(k => k.toLowerCase().includes('reproduc')) || '';
+const reprod = reprodKey ? parseInt(o[reprodKey]) || 0 : 0; // Asegúrate de convertir a número
 
-    let statusRow = '<div class="art-status-row">';
-    statusRow += '<span class="status-tag ' + statusClass + '">' + statusText + '</span>';
-  if (precio) statusRow += '<span class="price">' + precio + ' <span class="pesos-uruguayos">pesos uruguayos</span></span><br><br>';
+let statusRow = '<div class="art-status-row">';
+statusRow += '<span class="status-tag ' + statusClass + '">' + statusText + '</span>';
+if (precio) statusRow += '<span class="price">' + precio + ' <span class="pesos-uruguayos">pesos uruguayos</span></span><br><br>';
 
+statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Reproducciones:</span> ' +
+    (reprod > 0 ? '<span class="status-tag" style="color: green; font-weight:700;">' + reprod + ' disponibles</span>' : 
+    '<span class="status-tag" style="color: #000; font-weight:700;">—</span>');
 
-  const reprodColor = (reprod && reprod.trim().charAt(0) !== '0') ? 'class="status-tag disponible"' : 'class="status-tag"';
-statusRow += '<span ' + reprodColor + ' style="color: #000; font-weight: bold;">Reproducciones:</span> ' + (reprod > 0 ? '<span class="status-tag" style="color: green; font-weight:700; font-size: 10px;">' + reprod + ' disponibles</span>' : '<span class="status-tag" style="color: #000; font-weight:700; font-size: 10px;">—</span>');
+statusRow += '</div>';
 
-
-    statusRow += '</div>';
 
     cardsHTML += '<div class="art-card">'
         + '<img src="' + o.Imagen + '" onerror="this.src=\'https://via.placeholder.com/500x700?text=Cargando...\'">'
