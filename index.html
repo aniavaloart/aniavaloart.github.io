@@ -437,8 +437,9 @@
   if (precio) statusRow += '<span class="price">' + precio + ' <span class="pesos-uruguayos">pesos uruguayos</span></span><br><br>';
 
 
-    const reprodColor = (reprod && reprod.trim().charAt(0) !== '0') ? 'class="status-tag disponible"' : 'class="status-tag" style="color:#111; font-weight:700;"';
-statusRow += '<span ' + reprodColor + '>Reproducciones: ' + (reprod ? reprod + ' disponibles' : '—') + '</span>';
+   const reprodColor = (reprod && reprod.trim().charAt(0) !== '0') ? 'class="status-tag disponible"' : 'class="status-tag"';
+statusRow += '<span ' + reprodColor + ' style="color: #000; font-weight: 700;">Reproducciones:</span> ' + (reprod ? reprod + ' disponibles' : '—');
+
 
     statusRow += '</div>';
 
