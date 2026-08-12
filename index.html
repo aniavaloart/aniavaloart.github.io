@@ -438,7 +438,12 @@
 
 
     const reprodColor = (reprod && reprod.trim().charAt(0) !== '0') ? 'class="status-tag disponible"' : 'class="status-tag" style="color:#111; font-weight:700;"';
-statusRow += '<span class="status-tag" style="color:#111; font-weight:700;"><strong>Reproducciones:</strong> <span style="color:green;">' + (reprod ? reprod + ' disponibles' : '—') + '</span></span>';
+const cantidadReproducciones = (reprod === '0') 
+    ? '<strong>Reproducciones: ' + reprod + ' disponibles</strong>' 
+    : 'Reproducciones: <span style="color:green;">' + (reprod ? reprod + ' disponibles' : '—') + '</span>';
+
+statusRow += '<span class="status-tag" style="color:#111; font-weight:700;">' + cantidadReproducciones + '</span>';
+
 
 
     statusRow += '</div>';
