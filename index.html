@@ -390,7 +390,6 @@
     const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1YP4lU1pTAVV_N9W0eNmATQfoaSqultXDHSJrlf5oEutLrpB8vaqsEuZjICM-d5c0ZypV3Htt4MtM/pub?output=csv";
 
     function cargar() {
-        // Usamos fetch para forzar la carga limpia
         fetch(CSV_URL)
             .then(response => response.text())
             .then(csvText => {
@@ -421,54 +420,35 @@
             const obras = data.filter(item => (item.Coleccion || item.Colección) === col);
             let cardsHTML = '';
 
-          // Dentro de la función renderizar(data) que ya tienes, agrega la lógica para el nuevo campo:
-obras.forEach(o => {
-    const disp = (o["Original Disponible"] || "").trim().toUpperCase() === "SI";
-    const statusClass = disp ? 'disponible' : 'vendida';
-    const statusText = disp ? 'Original disponible' : '<strong><span style="color:red;">Original vendido</span></strong>';
+            obras.forEach(o => {
+                const disp = (o["Original Disponible"] || "").trim().toUpperCase() === "SI";
+                const statusClass = disp ? 'disponible' : 'vendida';
+                const statusText = disp ? 'Original disponible' : '<strong><span style="color:red;">Original vendido</span></strong>';
 
-    const precio = disp ? (o.Precio || '') : '';
-    const precioReproduccion = o["Precio reproducciones"] || ''; // Nuevo campo
+                const precio = disp ? (o.Precio || '') : '';
+                const precioReproduccion = o["Precio reproducciones"] || ''; // Nuevo campo
 
-    // Construir la fila de estado
-    let statusRow = '<div class="art-status-row">';
-    statusRow += '<span class="status-tag ' + statusClass + '">' + statusText + '</span>';
-    if (precio) statusRow += '<span class="price">' + precio + ' <span class="pesos-uruguayos">pesos uruguayos</span></span><br><br>';
-    
-    // Mostrar el precio de reproducciones
-    if (precioReproduccion) {
-        statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Precio Reproducciones: ' + precioReproduccion + ' <span class="pesos-uruguayos">pesos uruguayos</span></span>';
-    }
+                let statusRow = '<div class="art-status-row">';
+                statusRow += '<span class="status-tag ' + statusClass + '">' + statusText + '</span>';
+                if (precio) statusRow += '<span class="price">' + precio + ' <span class="pesos-uruguayos">pesos uruguayos</span></span><br><br>';
+                
+                // Mostrar el precio de reproducciones
+                if (precioReproduccion) {
+                    statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Precio Reproducciones: ' + precioReproduccion + ' <span class="pesos-uruguayos">pesos uruguayos</span></span>';
+                }
 
-    statusRow += '</div>';
-    
-    // Construcción de la tarjeta de arte
-    cardsHTML += '<div class="art-card">'
-        + '<img src="' + o.Imagen + '" onerror="this.src=\'https://via.placeholder.com/500x700?text=Cargando...\'">'
-        + '<div class="art-info">'
-        + '<h3>' + (o.Titulo || o.Título || '') + '</h3>'
-        + '<div class="art-meta">' + (o.Año || '') + ' · ' + (o.Dimensión || '') + '</div>'
-        + '<div class="art-meta">' + (o.Técnica || '') + '</div>'
-        + '<p class="art-description">' + (o.Descripcion || o.Descripción || '') + '</p>'
-        + statusRow
-        + '</div></div>';
-});
+                statusRow += '</div>';
 
-
-
-    cardsHTML += '<div class="art-card">'
-        + '<img src="' + o.Imagen + '" onerror="this.src=\'https://via.placeholder.com/500x700?text=Cargando...\'">'
-        + '<div class="art-info">'
-       + '<h3>' + (o.Titulo || o.Título || '') + (function(){ const k = Object.keys(o).find(k => k.toLowerCase().trim() === 'nombre'); return (k && o[k]) ? ' | "' + o[k] + '"' : ''; })() + '</h3>'
-
-
-        + '<div class="art-meta">' + (o.Año || '') + ' · ' + (o.Dimensión || '') + '</div>'
-        + '<div class="art-meta">' + (o.Técnica || '') + '</div>'
-        + '<p class="art-description">' + (o.Descripcion || o.Descripción || '') + '</p>'
-        + statusRow
-        + '</div></div>';
-});
-
+                cardsHTML += '<div class="art-card">'
+                    + '<img src="' + o.Imagen + '" onerror="this.src=\'https://via.placeholder.com/500x700?text=Cargando...\'">'
+                    + '<div class="art-info">'
+                    + '<h3>' + (o.Titulo || o.Título || '') + '</h3>'
+                    + '<div class="art-meta">' + (o.Año || '') + ' · ' + (o.Dimensión || '') + '</div>'
+                    + '<div class="art-meta">' + (o.Técnica || '') + '</div>'
+                    + '<p class="art-description">' + (o.Descripcion || o.Descripción || '') + '</p>'
+                    + statusRow
+                    + '</div></div>';
+            });
 
             container.innerHTML += `
                 <section class="section" id="${id}">
@@ -482,5 +462,6 @@ obras.forEach(o => {
 
     window.onload = cargar;
 </script>
+
 </body>
 </html>
