@@ -414,7 +414,9 @@
     let statusRow = '<div class="art-status-row">';
     statusRow += '<span class="status-tag ' + statusClass + '">' + statusText + '</span>';
     if (precio) statusRow += '<span class="price">' + precio + '</span>';
-    statusRow += '<span class="status-tag disponible">Reproducciones: ' + (reprod ? reprod + ' disponibles' : '—') + '</span>';
+    const reprodColor = (reprod && reprod.trim().charAt(0) !== '0') ? 'class="status-tag disponible"' : 'class="status-tag" style="color:#111; font-weight:700;"';
+statusRow += '<span ' + reprodColor + '>Reproducciones: ' + (reprod ? reprod + ' disponibles' : '—') + '</span>';
+
     statusRow += '</div>';
 
     cardsHTML += '<div class="art-card">'
