@@ -401,67 +401,8 @@
                     }
                 });
             })
-            .catch(err => console.error("Error cargando CSV:", err));
-    }
+            .catch(err => console.
 
-    function renderizar(data) {
-        const container = document.getElementById('contenedor-dinamico');
-        const nav = document.getElementById('nav-colecciones');
-
-        container.innerHTML = '';
-        nav.innerHTML = '';
-
-        const colecciones = [...new Set(data.map(item => item.Coleccion || item.Colección))].filter(c => c);
-
-        colecciones.forEach(col => {
-            const id = col.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-');
-            nav.innerHTML += `<a href="#${id}">${col}</a>`;
-
-            const obras = data.filter(item => (item.Coleccion || item.Colección) === col);
-            let cardsHTML = '';
-
-            obras.forEach(o => {
-                const disp = (o["Original Disponible"] || "").trim().toUpperCase() === "SI";
-                const statusClass = disp ? 'disponible' : 'vendida';
-                const statusText = disp ? 'Original disponible' : '<strong><span style="color:red;">Original vendido</span></strong>';
-
-                const precio = disp ? (o.Precio || '') : '';
-                const precioReproduccion = o["Precio reproducciones"] || ''; // Nuevo campo
-
-                let statusRow = '<div class="art-status-row">';
-                statusRow += '<span class="status-tag ' + statusClass + '">' + statusText + '</span>';
-                if (precio) statusRow += '<span class="price">' + precio + ' <span class="pesos-uruguayos">pesos uruguayos</span></span><br><br>';
-                
-                // Mostrar el precio de reproducciones
-                if (precioReproduccion) {
-                    statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Precio Reproducciones: ' + precioReproduccion + ' <span class="pesos-uruguayos">pesos uruguayos</span></span>';
-                }
-
-                statusRow += '</div>';
-
-                cardsHTML += '<div class="art-card">'
-                    + '<img src="' + o.Imagen + '" onerror="this.src=\'https://via.placeholder.com/500x700?text=Cargando...\'">'
-                    + '<div class="art-info">'
-                    + '<h3>' + (o.Titulo || o.Título || '') + '</h3>'
-                    + '<div class="art-meta">' + (o.Año || '') + ' · ' + (o.Dimensión || '') + '</div>'
-                    + '<div class="art-meta">' + (o.Técnica || '') + '</div>'
-                    + '<p class="art-description">' + (o.Descripcion || o.Descripción || '') + '</p>'
-                    + statusRow
-                    + '</div></div>';
-            });
-
-            container.innerHTML += `
-                <section class="section" id="${id}">
-                    <div class="container">
-                        <h2 class="section-title">${col}</h2>
-                        <div class="gallery">${cardsHTML}</div>
-                    </div>
-                </section>`;
-        });
-    }
-
-    window.onload = cargar;
-</script>
 
 </body>
 </html>
