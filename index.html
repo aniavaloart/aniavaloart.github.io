@@ -433,7 +433,7 @@
     const reprod = reprodKey ? (o[reprodKey] || '').trim() : '';
 
     let statusRow = '<div class="art-status-row">';
-    statusRow += '<span class="status-tag ' + statusClass + '">' + statusText + '</span>';
+    statusRow += '<span class="status-tag" style="color: #000;">Reproducciones: ' + (reprod ? reprod + ' disponibles' : '—') + '</span>';
   if (precio) statusRow += '<span class="price">' + precio + ' <span class="pesos-uruguayos">pesos uruguayos</span></span><br><br>';
 
 
