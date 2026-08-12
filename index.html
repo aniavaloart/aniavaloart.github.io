@@ -420,7 +420,8 @@
     cardsHTML += '<div class="art-card">'
         + '<img src="' + o.Imagen + '" onerror="this.src=\'https://via.placeholder.com/500x700?text=Cargando...\'">'
         + '<div class="art-info">'
-       + '<h3>' + (o.Titulo || o.Título || '') + '</h3>'
+       + '<h3>' + (o.Titulo || o.Título || '') + (function(){ const k = Object.keys(o).find(k => k.toLowerCase().trim() === 'nombre'); return (k && o[k]) ? ' | "' + o[k] + '"' : ''; })() + '</h3>'
+
 
         + '<div class="art-meta">' + (o.Año || '') + ' · ' + (o.Dimensión || '') + '</div>'
         + '<div class="art-meta">' + (o.Técnica || '') + '</div>'
