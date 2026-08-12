@@ -408,7 +408,8 @@
     const statusClass = disp ? 'disponible' : 'vendida';
     const statusText = disp ? 'Original disponible' : 'Original no disponible';
     const precio = disp ? (o.Precio || '') : '';
-    const reprod = (o['Reproducciones disponibles'] || '').trim();
+    const reprodKey = Object.keys(o).find(k => k.toLowerCase().includes('reproduc')) || '';
+    const reprod = reprodKey ? (o[reprodKey] || '').trim() : '';
 
     let statusRow = '<div class="art-status-row">';
     statusRow += '<span class="status-tag ' + statusClass + '">' + statusText + '</span>';
@@ -416,17 +417,15 @@
     statusRow += '<span class="status-tag disponible">Reproducciones: ' + (reprod ? reprod + ' disponibles' : '—') + '</span>';
     statusRow += '</div>';
 
-    cardsHTML += `
-        <div class="art-card">
-            <img src="${o.Imagen}" onerror="this.src='https://via.placeholder.com/500x700?text=Cargando...'">
-            <div class="art-info">
-                <h3>${o.Titulo || o.Título}</h3>
-                <div class="art-meta">${o.Año || ''} · \${o.Dimensión || ''}</div>
-                <div class="art-meta">${o.Técnica || ''}</div>
-                <p class="art-description">${o.Descripcion || o.Descripción || ''}</p>
-                ` + statusRow + `
-            </div>
-        </div>`;
+    cardsHTML += '<div class="art-card">'
+        + '<img src="' + o.Imagen + '" onerror="this.src=\'https://via.placeholder.com/500x700?text=Cargando...\'">'
+        + '<div class="art-info">'
+        + '<h3>' + (o.Titulo || o.Título || '') + '</h3>'
+        + '<div class="art-meta">' + (o.Año || '') + ' · ' + (o.Dimensión || '') + '</div>'
+        + '<div class="art-meta">' + (o.Técnica || '') + '</div>'
+        + '<p class="art-description">' + (o.Descripcion || o.Descripción || '') + '</p>'
+        + statusRow
+        + '</div></div>';
 });
 
 
