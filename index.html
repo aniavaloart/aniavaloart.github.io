@@ -401,7 +401,18 @@
                     }
                 });
             })
-            .catch(err => console.
+            .catch(err => console.error("Error cargando CSV:", err));
+    }
+
+    function renderizar(data) {
+        const container = document.getElementById('contenedor-dinamico');
+        const nav = document.getElementById('nav-colecciones');
+
+        container.innerHTML = '';
+        nav.innerHTML = '';
+
+        const colecciones = [...n
+
 
 
 </body>
