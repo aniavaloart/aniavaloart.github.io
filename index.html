@@ -406,7 +406,8 @@
            obras.forEach(o => {
     const disp = (o.Disponible || "").trim().toUpperCase() === "SI";
     const statusClass = disp ? 'disponible' : 'vendida';
-    const statusText = disp ? 'Original disponible' : 'Original no disponible';
+   const statusText = disp ? 'Original disponible' : '<strong><span style="color:red;">Original vendido</span></strong>';
+
     const precio = disp ? (o.Precio || '') : '';
     const reprodKey = Object.keys(o).find(k => k.toLowerCase().includes('reproduc')) || '';
     const reprod = reprodKey ? (o[reprodKey] || '').trim() : '';
