@@ -354,7 +354,8 @@ if (precio) {
 statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Reproducciones:</span> ' +
     (reprod === "0/10"
         ? '<span class="status-tag" style="color: #000; font-weight:700;">' + reprod + ' disponibles</span>'
-        : '<span class="status-tag" style="color: green; font-weight:700;">' + reprod + ' disponibles</span>');
+        : '<span class="status-tag" style="color: #27ae60; font-weight:700;">' + reprod + ' disponibles</span>'
+);
 
 if (precioReprod && reprod !== "0/10") {
     statusRow += '<span class="price" style="display:block; margin-top:3px;">' + precioReprod + ' <span class="pesos-uruguayos">pesos uruguayos</span></span>';
