@@ -126,6 +126,18 @@
         }
         .art-info h3 { font-size: 16px; }
     }
+.art-card {
+    position: relative;
+}
+.art-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
 
     .art-card img { 
         width: 100%; 
@@ -390,6 +402,16 @@ if (precioReprod && reprod !== "0/10") {
     }
 
     window.onload = cargar;
+   document.addEventListener('contextmenu', function(e) {
+    if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+    }
+});
+
+document.querySelectorAll('img').forEach(img => {
+    img.setAttribute('draggable', 'false');
+});
+
 </script>
 </body>
 </html>
