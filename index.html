@@ -438,9 +438,17 @@ statusRow += '<div style="margin: 4px 0;"></div>'; // Ajusta el valor según el 
 
 if (precio) statusRow += '<span class="price">' + precio + ' <span class="pesos-uruguayos">pesos uruguayos</span></span><br><br>';
 
+const precioReprod = (o["Precio Reproduccion"] || "").trim();
+
 statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Reproducciones:</span> ' +
-    (reprod === "0/10" ? '<span class="status-tag" style="color: #000; font-weight:700;">' + reprod + ' disponibles</span>' :
-    '<span class="status-tag" style="color: green; font-weight:700;">' + reprod + ' disponibles</span>');
+    (reprod === "0/10"
+        ? '<span class="status-tag" style="color: #000; font-weight:700;">' + reprod + ' disponibles</span>'
+        : '<span class="status-tag" style="color: green; font-weight:700;">' + reprod + ' disponibles</span>');
+
+if (precioReprod) {
+    statusRow += '<br><span class="price">' + precioReprod + ' <span class="pesos-uruguayos">pesos uruguayos</span></span>';
+}
+
 
 
 
