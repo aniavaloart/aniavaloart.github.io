@@ -346,7 +346,24 @@ function sanitizar(str) {
             const obras = data.filter(item => (item.Coleccion || item.Colección) === col);
             let cardsHTML = '';
 
-            obras.forEach(o => {
+           obras.forEach(o => {
+    // Primero se calculan todos los valores originales
+    const disp = (o["Original Disponible"] || "").trim().toUpperCase() === "SI";
+    const statusClass = disp ? 'disponible' : 'vendida';
+    const statusText = disp ? 'Original disponible' : '<strong><span style="color:red;">Original vendido</span></strong>';
+    const precio = disp ? (o.Precio || '') : '';
+
+    const reprodKey = Object.keys(o).find(k =>
+        k.toLowerCase().includes('reproduc') && !k.toLowerCase().includes('precio')
+    ) || '';
+    const reprod = reprodKey ? o[reprodKey].trim() : '';
+
+    const precioReprodKey = Object.keys(o).find(k =>
+        k.toLowerCase().includes('precio') && k.toLowerCase().includes('reproduc')
+    ) || '';
+    const precioReprod = precioReprodKey ? (o[precioReprodKey] || '').trim() : '';
+
+    // Luego se sanitizan
     const titulo = sanitizar(o.Titulo || o.Título || '');
     const año = sanitizar(o.Año || '');
     const dimension = sanitizar(o.Dimensión || '');
@@ -356,52 +373,41 @@ function sanitizar(str) {
     const precioSan = sanitizar(precio);
     const precioReprodSan = sanitizar(precioReprod);
 
+    // Se construye el statusRow
+    let statusRow = '<div class="art-status-row">';
+    statusRow += '<span class="status-tag ' + statusClass + '">' + statusText + '</span>';
+    statusRow += '<div style="margin: 2px 0;"></div>';
 
-                // Cantidad de reproducciones: busca columna con "reproduc" pero SIN "precio"
-                const reprodKey = Object.keys(o).find(k =>
-                    k.toLowerCase().includes('reproduc') && !k.toLowerCase().includes('precio')
-                ) || '';
-                const reprod = reprodKey ? o[reprodKey].trim() : '';
+    if (precioSan) {
+        statusRow += '<span class="price" style="display:block; margin-top:0px; margin-bottom:10px;">' + precioSan + ' <span class="pesos-uruguayos">pesos uruguayos</span></span>';
+    }
 
-                // Precio de reproducciones: busca columna con AMBAS palabras "precio" y "reproduc"
-                const precioReprodKey = Object.keys(o).find(k =>
-                    k.toLowerCase().includes('precio') && k.toLowerCase().includes('reproduc')
-                ) || '';
-                const precioReprod = precioReprodKey ? (o[precioReprodKey] || '').trim() : '';
+    statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Reproducciones:</span> ' +
+        (reprod === "0/10"
+            ? '<span class="status-tag" style="color: #000; font-weight:700;">' + sanitizar(reprod) + ' disponibles</span>'
+            : '<span class="status-tag" style="color: #27ae60; font-weight:700;">' + sanitizar(reprod) + ' disponibles</span>'
+        );
 
-               let statusRow = '<div class="art-status-row">';
-statusRow += '<span class="status-tag ' + statusClass + '">' + statusText + '</span>';
-statusRow += '<div style="margin: 2px 0;"></div>';
+    if (precioReprodSan && reprod !== "0/10") {
+        statusRow += '<span class="price" style="display:block; margin-top:3px;">' + precioReprodSan + ' <span class="pesos-uruguayos">pesos uruguayos</span></span>';
+    }
 
-if (precio) {
-  statusRow += '<span class="price" style="display:block; margin-top:0px; margin-bottom:10px;">' + precio + ' <span class="pesos-uruguayos">pesos uruguayos</span></span>';
+    statusRow += '</div>';
 
-}
+    // Se construye la card con variables sanitizadas
+    const nombre = (() => { const k = Object.keys(o).find(k => k.toLowerCase().trim() === 'nombre'); return (k && o[k]) ? ' | "' + sanitizar(o[k]) + '"' : ''; })();
 
-statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Reproducciones:</span> ' +
-    (reprod === "0/10"
-        ? '<span class="status-tag" style="color: #000; font-weight:700;">' + reprod + ' disponibles</span>'
-        : '<span class="status-tag" style="color: #27ae60; font-weight:700;">' + reprod + ' disponibles</span>'
-);
+    cardsHTML += '<div class="art-card">'
+        + '<img src="' + imagen + '" onerror="this.src=\'https://via.placeholder.com/500x700?text=Cargando...\'">'
+        + '<div class="art-info">'
+        + '<h3>' + titulo + nombre + '</h3>'
+        + '<div class="art-meta">' + año + ' · ' + dimension + '</div>'
+        + '<div class="art-meta">' + tecnica + '</div>'
+        + '<p class="art-description">' + descripcion + '</p>'
+        + statusRow
+        + '</div></div>';
+});
 
-if (precioReprod && reprod !== "0/10") {
-    statusRow += '<span class="price" style="display:block; margin-top:3px;">' + precioReprod + ' <span class="pesos-uruguayos">pesos uruguayos</span></span>';
-}
-
-
-
-                statusRow += '</div>';
-
-                cardsHTML += '<div class="art-card">'
-                    + '<img src="' + o.Imagen + '" onerror="this.src=\'https://via.placeholder.com/500x700?text=Cargando...\'">'
-                    + '<div class="art-info">'
-                    + '<h3>' + (o.Titulo || o.Título || '') + (function(){ const k = Object.keys(o).find(k => k.toLowerCase().trim() === 'nombre'); return (k && o[k]) ? ' | "' + o[k] + '"' : ''; })() + '</h3>'
-                    + '<div class="art-meta">' + (o.Año || '') + ' · ' + (o.Dimensión || '') + '</div>'
-                    + '<div class="art-meta">' + (o.Técnica || '') + '</div>'
-                    + '<p class="art-description">' + (o.Descripcion || o.Descripción || '') + '</p>'
-                    + statusRow
-                    + '</div></div>';
-            });
 
             container.innerHTML += `
                 <section class="section" id="${id}">
