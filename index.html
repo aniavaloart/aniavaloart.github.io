@@ -324,6 +324,11 @@
             })
             .catch(err => console.error("Error cargando CSV:", err));
     }
+function sanitizar(str) {
+    const div = document.createElement('div');
+    div.appendChild(document.createTextNode(str || ''));
+    return div.innerHTML;
+}
 
     function renderizar(data) {
         const container = document.getElementById('contenedor-dinamico');
