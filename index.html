@@ -11,7 +11,8 @@
     *{ margin:0; padding:0; box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
     body{ background:#f6f3ef; color:#111; font-family:'Inter',sans-serif; overflow-x:hidden; }
-    img{ width:100%; display:block; }
+  img{ width:100%; display:block; -webkit-user-drag:none; user-select:none; pointer-events:none; }
+
     a{ text-decoration:none; color:inherit; }
     .container{ width:90%; max-width:1450px; margin:auto; }
 
@@ -187,14 +188,8 @@
 </style>
 
 </head>
-   <script>
-    document.addEventListener('contextmenu', function(e) {
-        if (e.target.tagName === 'IMG') {
-            e.preventDefault();
-        }
-    });
-</script>
-</body>
+  
+
 
 <body>
 
@@ -432,5 +427,12 @@ function sanitizar(str) {
   
 
 </script>
+
+<script>
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+</script>
 </body>
 </html>
+
