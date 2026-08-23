@@ -399,7 +399,8 @@ function sanitizar(str) {
         statusRow += '<span class="price" style="display:block; margin-top:0px; margin-bottom:10px;">' + precioSan + ' <span class="pesos-uruguayos">pesos uruguayos</span></span>';
     }
 
-   statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Reproducciones originales disponibles:</span> ' +
+   statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Reproducciones limitadas disponibles:</span> ' +
+
     (reprod === "0/10"
         ? '<span class="status-tag" style="color: #000; font-weight:700; display:none;">' + sanitizar(reprod) + '</span>'
         : '<span class="status-tag" style="color: #27ae60; font-weight:700; display:none;">' + sanitizar(reprod) + '</span>'
