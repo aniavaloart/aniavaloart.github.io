@@ -366,7 +366,7 @@ function sanitizar(str) {
     const disp = (o["Original Disponible"] || "").trim().toUpperCase() === "SI";
     const statusClass = disp ? 'disponible' : 'vendida';
     
-    // CAMBIO: Si no está disponible, el texto se queda vacío en lugar de decir "Original vendido"
+    // Si no está disponible, el texto se queda vacío
     const statusText = disp ? 'Original disponible' : ''; 
     
     const precio = disp ? (o.Precio || '') : '';
@@ -386,7 +386,6 @@ function sanitizar(str) {
 
     let statusRow = '<div class="art-status-row">';
     
-    // Solo añade el span si hay texto (es decir, si está disponible)
     if (statusText) {
         statusRow += '<span class="status-tag ' + statusClass + '">' + statusText + '</span>';
     }
@@ -397,14 +396,11 @@ function sanitizar(str) {
         statusRow += '<span class="price" style="display:block; margin-top:0px; margin-bottom:10px;">' + precioSan + ' <span class="pesos-uruguayos">pesos uruguayos</span></span>';
     }
 
-   statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Reproducciones limitadas disponibles:</span> ' +
-
-    (reprod === "0/10"
-        ? '<span class="status-tag" style="color: #000; font-weight:700; display:none;">' + sanitizar(reprod) + '</span>'
-        : '<span class="status-tag" style="color: #27ae60; font-weight:700; display:none;">' + sanitizar(reprod) + '</span>'
-    );
-
-    // CAMBIO: Se ha eliminado el bloque que mostraba el precio de las reproducciones (precioReprodSan)
+    // CAMBIO: Si el valor es "10/10" o "0/10", oculta toda la línea de reproducciones
+    if (reprod && reprod !== "10/10" && reprod !== "0/10") {
+        statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Reproducciones limitadas disponibles:</span> ' +
+        '<span class="status-tag" style="color: #27ae60; font-weight:700;">' + sanitizar(reprod) + '</span>';
+    }
 
     statusRow += '</div>';
 
