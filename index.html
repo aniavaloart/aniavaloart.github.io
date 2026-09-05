@@ -362,7 +362,7 @@ function sanitizar(str) {
             const obras = data.filter(item => (item.Coleccion || item.Colección) === col);
             let cardsHTML = '';
 
-           obras.forEach(o => {
+          obras.forEach(o => {
     const disp = (o["Original Disponible"] || "").trim().toUpperCase() === "SI";
     const statusClass = disp ? 'disponible' : 'vendida';
     
@@ -396,10 +396,11 @@ function sanitizar(str) {
         statusRow += '<span class="price" style="display:block; margin-top:0px; margin-bottom:10px;">' + precioSan + ' <span class="pesos-uruguayos">pesos uruguayos</span></span>';
     }
 
-    // CAMBIO: Si el valor es "10/10" o "0/10", oculta toda la línea de reproducciones
-    if (reprod && reprod !== "10/10" && reprod !== "0/10") {
-        statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Reproducciones limitadas disponibles:</span> ' +
-        '<span class="status-tag" style="color: #27ae60; font-weight:700;">' + sanitizar(reprod) + '</span>';
+    // CAMBIO: Oculta la cantidad de reproducciones pero mantiene el mensaje de disponibilidad
+    if (disp) {
+        statusRow += '<span class="status-tag" style="color: #27ae60; font-weight:700;">Disponible</span>';
+    } else {
+        statusRow += '<span class="status-tag" style="color: #999; font-weight:700;">No disponible</span>';
     }
 
     statusRow += '</div>';
