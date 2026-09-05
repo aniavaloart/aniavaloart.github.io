@@ -362,7 +362,7 @@ function sanitizar(str) {
             const obras = data.filter(item => (item.Coleccion || item.Colección) === col);
             let cardsHTML = '';
 
-          obras.forEach(o => {
+         obras.forEach(o => {
     const disp = (o["Original Disponible"] || "").trim().toUpperCase() === "SI";
     const statusClass = disp ? 'disponible' : 'vendida';
     
@@ -396,16 +396,19 @@ function sanitizar(str) {
         statusRow += '<span class="price" style="display:block; margin-top:0px; margin-bottom:10px;">' + precioSan + ' <span class="pesos-uruguayos">pesos uruguayos</span></span>';
     }
 
-    // CAMBIO: Oculta la cantidad de reproducciones pero mantiene el mensaje de disponibilidad
-    if (disp) {
-        statusRow += '<span class="status-tag" style="color: #27ae60; font-weight:700;">Disponible</span>';
-    } else {
-        statusRow += '<span class="status-tag" style="color: #999; font-weight:700;">No disponible</span>';
+    // CAMBIO: Muestra un mensaje solo si hay reproducciones disponibles, pero oculta la cantidad
+    if (reprod && reprod !== "10/10" && reprod !== "0/10") {
+        statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Reproducciones disponibles</span>';
+    } else if (disp) {
+        // Si no hay reproducciones disponibles, no se agrega nada
     }
 
     statusRow += '</div>';
 
-    const nombre = (() => { const k = Object.keys(o).find(k => k.toLowerCase().trim() === 'nombre'); return (k && o[k]) ? ' | "' + sanitizar(o[k]) + '"' : ''; })();
+    const nombre = (() => { 
+        const k = Object.keys(o).find(k => k.toLowerCase().trim() === 'nombre'); 
+        return (k && o[k]) ? ' | "' + sanitizar(o[k]) + '"' : ''; 
+    })();
 
     cardsHTML += '<div class="art-card">'
         + '<img src="' + imagen + '" onerror="this.src=\'https://via.placeholder.com/500x700?text=Cargando...\'">'
@@ -417,6 +420,7 @@ function sanitizar(str) {
         + statusRow
         + '</div></div>';
 });
+
 
 
             container.innerHTML += `
