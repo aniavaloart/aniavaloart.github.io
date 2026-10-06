@@ -385,8 +385,11 @@ function sanitizar(str) {
     const imagen = sanitizar(o.Imagen || '');
     const precioSan = sanitizar(precio);
 
-    let statusRow = '<div class="art-status-row">';
+     let statusRow = '<div class="art-status-row">';
     
+    // Variable para saber si hay reproducciones disponibles
+    const hayReproducciones = reprod && reprod !== "10/10" && reprod !== "0/10";
+
     if (statusText) {
         statusRow += '<span class="status-tag ' + statusClass + '">' + statusText + '</span>';
     }
@@ -397,11 +400,13 @@ function sanitizar(str) {
         statusRow += '<span class="price" style="display:block; margin-top:0px; margin-bottom:10px;">' + precioSan + ' <span class="pesos-uruguayos">pesos uruguayos</span></span>';
     }
 
-    // CAMBIO: Muestra un mensaje solo si hay reproducciones disponibles, pero oculta la cantidad
-   if (reprod && reprod !== "10/10" && reprod !== "0/10") {
-    statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Ediciones limitadas de autor disponibles</span>';
-} else if (disp) {
-        // Si no hay reproducciones disponibles, no se agrega nada
+    // Si hay reproducciones, muestra el nuevo texto en negrita
+    if (hayReproducciones) {
+        statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Ediciones limitadas de autor disponibles</span>';
+    } 
+    // Si no hay original Y no hay reproducciones, muestra "Agotado"
+    else if (!disp && !hayReproducciones) {
+        statusRow += '<span class="status-tag" style="color: #e74c3c; opacity: 0.7; font-size: 9px; font-weight: 500;">Agotado</span>';
     }
 
     statusRow += '</div>';
