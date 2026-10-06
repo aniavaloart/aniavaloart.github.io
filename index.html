@@ -398,9 +398,9 @@ function sanitizar(str) {
     }
 
     // CAMBIO: Muestra un mensaje solo si hay reproducciones disponibles, pero oculta la cantidad
-    if (reprod && reprod !== "10/10" && reprod !== "0/10") {
-        statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Reproducciones disponibles</span>';
-    } else if (disp) {
+   if (reprod && reprod !== "10/10" && reprod !== "0/10") {
+    statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Ediciones limitadas de autor disponibles</span>';
+} else if (disp) {
         // Si no hay reproducciones disponibles, no se agrega nada
     }
 
