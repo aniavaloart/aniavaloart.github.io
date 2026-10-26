@@ -370,7 +370,7 @@ function sanitizar(str) {
     const statusClass = disp ? 'disponible' : 'vendida';
     
     // Si no está disponible, el texto se queda vacío
-    const statusText = disp ? 'Original disponible' : ''; 
+   const statusText = disp ? 'Original disponible - Consultar precio' : '';
     
     const precio = disp ? (o.Precio || '') : '';
 
@@ -393,7 +393,7 @@ function sanitizar(str) {
     const hayReproducciones = reprod && reprod !== "10/10" && reprod !== "0/10";
 
     if (statusText) {
-        statusRow += '<span class="status-tag ' + statusClass + '">' + statusText + '</span>';
+       statusRow += '<span class="status-tag ' + statusClass + '" style="order: 1;">' + statusText + '</span>';
     }
     
     statusRow += '<div style="margin: 2px 0;"></div>';
