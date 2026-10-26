@@ -366,7 +366,7 @@ function sanitizar(str) {
             let cardsHTML = '';
 
          obras.forEach(o => {
-    const disp = (o["Original Disponible - consultar valor"] || "").trim().toUpperCase() === "SI";
+    const disp = (o["Original Disponible"] || "").trim().toUpperCase() === "SI";
     const statusClass = disp ? 'disponible' : 'vendida';
     
     // Si no está disponible, el texto se queda vacío
