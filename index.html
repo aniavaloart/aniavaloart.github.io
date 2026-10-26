@@ -387,31 +387,38 @@ function sanitizar(str) {
     const imagen = sanitizar(o.Imagen || '');
     const precioSan = sanitizar(precio);
 
-     let statusRow = '<div class="art-status-row">';
+        // ... dentro de obras.forEach(o => { ...
+
+    let statusRow = '<div class="art-status-row">';
     
     // Variable para saber si hay reproducciones disponibles
     const hayReproducciones = reprod && reprod !== "10/10" && reprod !== "0/10";
 
+    // 1. PRIMERO: Ediciones limitadas (ahora arriba)
+    if (hayReproducciones) {
+        statusRow += '<span class="status-tag" style="color: #000; font-weight: bold; margin-bottom: 5px;">Ediciones limitadas de autor disponibles</span>';
+    } 
+
+    // 2. SEGUNDO: Original disponible
     if (statusText) {
         statusRow += '<span class="status-tag ' + statusClass + '">' + statusText + '</span>';
     }
     
     statusRow += '<div style="margin: 2px 0;"></div>';
 
+    // 3. TERCERO: Precio
     if (precioSan) {
         statusRow += '<span class="price" style="display:block; margin-top:0px; margin-bottom:10px;">' + precioSan + ' <span class="pesos-uruguayos">pesos uruguayos</span></span>';
     }
 
-    // Si hay reproducciones, muestra el nuevo texto en negrita
-    if (hayReproducciones) {
-        statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Ediciones limitadas de autor disponibles</span>';
-    } 
-    // Si no hay original Y no hay reproducciones, muestra "Agotado"
-    else if (!disp && !hayReproducciones) {
+    // 4. CUARTO: Agotado (solo si no hay ni original ni reproducciones)
+    if (!disp && !hayReproducciones) {
         statusRow += '<span class="status-tag" style="color: #e74c3c; opacity: 0.7; font-size: 9px; font-weight: 500;">Agotado</span>';
     }
 
     statusRow += '</div>';
+
+    // ... sigue el resto del código
 
     const nombre = (() => { 
         const k = Object.keys(o).find(k => k.toLowerCase().trim() === 'nombre'); 
