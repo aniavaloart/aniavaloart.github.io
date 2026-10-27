@@ -403,13 +403,9 @@ function sanitizar(str) {
     }
 
     // Si hay reproducciones, muestra el nuevo texto en negrita
-    if (hayReproducciones) {
-        statusRow += '<span class="status-tag" style="color: #000; font-weight: bold;">Ediciones limitadas de autor disponibles</span>';
-    } 
-    // Si no hay original Y no hay reproducciones, muestra "Agotado"
-    else if (!disp && !hayReproducciones) {
-        statusRow += '<span class="status-tag" style="color: #e74c3c; opacity: 0.7; font-size: 9px; font-weight: 500;">Agotado</span>';
-    }
+  if (!disp && !hayReproducciones) {
+    statusRow += '<span class="status-tag" style="color: #e74c3c; opacity: 0.7; font-size: 9px; font-weight: 500;">Agotado</span>';
+}
 
     statusRow += '</div>';
 
@@ -421,8 +417,11 @@ function sanitizar(str) {
     cardsHTML += '<div class="art-card">'
         + '<img src="' + imagen + '" onerror="this.src=\'https://via.placeholder.com/500x700?text=Cargando...\'">'
         + '<div class="art-info">'
-        + '<h3>' + titulo + nombre + '</h3>'
-       + '<div class="art-meta">' + dimension + '</div>'
+       + '<h3>' + titulo + nombre + '</h3>'
++ (hayReproducciones
+    ? '<div class="status-tag" style="color: #000; font-weight: bold; margin-bottom: 8px;">Ediciones limitadas de autor disponibles</div>'
+    : '')
++ '<div class="art-meta">' + dimension + '</div>'
 
         + '<div class="art-meta">' + tecnica + '</div>'
         + '<p class="art-description">' + descripcion + '</p>'
